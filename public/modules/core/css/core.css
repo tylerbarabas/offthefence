@@ -23,7 +23,10 @@ body {
 .navbar{
 	display: none;
 }
-
+.logo {
+	margin-top: -40px;
+	margin-bottom: 10px;
+}
 .band-photo {
 	width: 100%;
 }
