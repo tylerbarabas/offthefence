@@ -1,0 +1,44 @@
+.content {
+	margin-top: 50px;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+body {
+	background-image: url('../img/natephotos/PICT0035.jpg');
+	background-size: 100% auto;
+}
+.jumbotron {
+	background-color: rgba(255,255,255,.5);
+}
+.navbar{
+	display: none;
+}
+
+.band-photo {
+	width: 100%;
+}
+
+.ng-enter {
+	transition: 0.75s;
+	opacity: 0;
+}
+.ng-enter-active {
+	opacity: 1;
+}
+.ng-leave{
+	transition: 0.75s;
+	opacity: 0;
+}
+.ng-leave-active {
+	 opacity: 1;
+}
