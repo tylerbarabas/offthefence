@@ -1,5 +1,5 @@
 <section data-ng-controller="HomeController">
-	<div class="jumbotron text-center">
+	<div class="jumbotron text-center" ng-show="mainPage">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
 				<img alt="Off The Fence" class="img-responsive text-center logo" src="modules/core/img/brand/logo.png" />
@@ -16,19 +16,27 @@
 		<br>
 		<div class="row">
 			<p class="lead">
-				Join our mailing list!
-				<form class="form-inline">
+				<strong>Join our mailing list!</strong>
+				<form class="form-inline" ng-submit="saveToMailingList()">
+
 					<label for="email"></label>
-					<input class="form-control" type="email" id="email" placeholder="Email">
+					<input class="form-control" type="email" id="email" placeholder="Email" ng-model="email" required>
 					<label for="first_name"></label>
-					<input class="form-control" type="text" id="first_name" placeholder="First name">
+					<input class="form-control" type="text" id="first_name" placeholder="First name" ng-model="firstName" required>
 					<label for="last_name"></label>
-					<input class="form-control" type="text" id="last_name" placeholder="Last name">
+					<input class="form-control" type="text" id="last_name" placeholder="Last name" ng-model="lastName" required>
 					<label for="zip"></label>
-					<input class="form-control" type="text" id="zip" placeholder="Zip code">
-					<button type="button" class="btn btn-primary">Join!</button>
+					<input class="form-control" type="text" id="zip" placeholder="Zip code" ng-model="zip" required>
+					<button type="submit" class="btn btn-primary">Join!</button>
+
+					<div data-ng-show="error" class="text-danger">
+						<strong data-ng-bind="error"></strong>
+					</div>
 				</form>
 			</p>
 		</div>
+	</div>
+	<div class="jumbotron text-center" ng-show="thankYou">
+		<h1>Thank you!</h1>
 	</div>
 </section>

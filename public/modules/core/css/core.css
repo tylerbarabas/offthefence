@@ -45,3 +45,11 @@ body {
 .ng-leave-active {
 	 opacity: 1;
 }
+.jumbotron.ng-hide-add {
+	-webkit-animation: fadeOutLeftBig 0.4s;
+	display: block!important;
+}
+.jumbotron.ng-hide-remove {
+	-webkit-animation: fadeInLeftBig 0.4s;
+	display: block!important;
+}

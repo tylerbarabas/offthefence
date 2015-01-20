@@ -10,10 +10,28 @@ var mongoose = require('mongoose'),
  * Email list Schema
  */
 var EmailListSchema = new Schema({
-	name: {
+	firstName: {
 		type: String,
 		default: '',
-		required: 'Please fill Email list name',
+		required: 'Please fill first name',
+		trim: true
+	},
+	lastName: {
+		type: String,
+		default: '',
+		required: 'Please fill last name',
+		trim: true
+	},
+	email: {
+		type: String,
+		default: '',
+		required: 'Please fill email',
+		trim: true
+	},
+	zip: {
+		type: String,
+		default: '',
+		required: 'Please fill zip code',
 		trim: true
 	},
 	created: {
@@ -22,7 +40,8 @@ var EmailListSchema = new Schema({
 	},
 	user: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		default: null
 	}
 });
 

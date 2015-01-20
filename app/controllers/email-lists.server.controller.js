@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var emailList = new EmailList(req.body);
-	emailList.user = req.user;
+	//emailList.user = req.user;
 
 	emailList.save(function(err) {
 		if (err) {

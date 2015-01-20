@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Email lists Routes
 	app.route('/email-lists')
 		.get(emailLists.list)
-		.post(users.requiresLogin, emailLists.create);
+		.post(emailLists.create);
 
 	app.route('/email-lists/:emailListId')
 		.get(emailLists.read)
