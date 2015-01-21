@@ -14,13 +14,13 @@ angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Auth
 
 			$timeout(function(){
 				$scope.thankYou = true;
-			}, 500);
+			}, 700);
 			$timeout(function(){
 				$scope.thankYou = false;
-			}, 1500);
+			}, 1800);
 			$timeout(function(){
 				$scope.mainPage = true;
-			}, 2000);
+			}, 2500);
 		};
 
 		$scope.saveToMailingList = function() {
