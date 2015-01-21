@@ -17,10 +17,10 @@ angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Auth
 			}, 700);
 			$timeout(function(){
 				$scope.thankYou = false;
-			}, 1800);
+			}, 4800);
 			$timeout(function(){
 				$scope.mainPage = true;
-			}, 2500);
+			}, 5500);
 		};
 
 		$scope.saveToMailingList = function() {
