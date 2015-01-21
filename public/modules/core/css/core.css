@@ -20,9 +20,6 @@ body {
 .jumbotron {
 	background-color: rgba(255,255,255,.5);
 }
-.navbar{
-	display: none;
-}
 .logo {
 	margin-top: -40px;
 	margin-bottom: 10px;
@@ -32,18 +29,11 @@ body {
 }
 
 .ng-enter {
-	transition: 0.75s;
+	transition: .75s;
 	opacity: 0;
 }
 .ng-enter-active {
 	opacity: 1;
-}
-.ng-leave{
-	transition: 0.75s;
-	opacity: 0;
-}
-.ng-leave-active {
-	 opacity: 1;
 }
 .jumbotron.ng-hide-add {
 	-webkit-animation: fadeOutLeftBig 0.4s;
