@@ -1,3 +1,8 @@
+body {
+	background-image: url('../img/natephotos/PICT0035.jpg');
+	background-size: 100% auto;
+}
+
 .content {
 	margin-top: 50px;
 }
@@ -12,10 +17,6 @@
 }
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
-}
-body {
-	background-image: url('../img/natephotos/PICT0035.jpg');
-	background-size: 100% auto;
 }
 .jumbotron {
 	background-color: rgba(255,255,255,.5);
@@ -42,4 +43,8 @@ body {
 .jumbotron.ng-hide-remove {
 	-webkit-animation: bounceInLeft .6s;
 	display: block!important;
+}
+
+.navbar {
+	max-height: 0; /*Hack for transparent nav bar*/
 }
