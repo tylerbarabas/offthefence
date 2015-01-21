@@ -29,12 +29,12 @@ body {
 }
 
 .ng-enter {
-	transition: .75s;
-	opacity: 0;
+	-webkit-animation: fadeInDown .4s;
+	display: block!important;
 }
-.ng-enter-active {
-	opacity: 1;
-}
+/*.ng-enter-active {*/
+	/*opacity: 1;*/
+/*}*/
 .jumbotron.ng-hide-add {
 	-webkit-animation: bounceOutLeft .6s;
 	display: block!important;
