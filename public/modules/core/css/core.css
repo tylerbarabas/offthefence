@@ -44,7 +44,8 @@ body {
 	-webkit-animation: bounceInLeft .6s;
 	display: block!important;
 }
-
-.navbar {
-	max-height: 0; /*Hack for transparent nav bar*/
+.navbar{
+	background-image: none;
+	background-color: transparent;
+	border: none;
 }
