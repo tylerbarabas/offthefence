@@ -14,7 +14,7 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 
 			// Redirect after save
 			show.$save(function(response) {
-				$location.path('shows/' + response._id);
+				$location.path('admin/shows/' + response._id);
 
 				// Clear form fields
 				$scope.name = '';
@@ -35,7 +35,7 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				}
 			} else {
 				$scope.show.$remove(function() {
-					$location.path('shows');
+					$location.path('admin/shows');
 				});
 			}
 		};
@@ -45,7 +45,7 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 			var show = $scope.show;
 
 			show.$update(function() {
-				$location.path('shows/' + show._id);
+				$location.path('admin/shows/' + show._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
