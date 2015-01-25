@@ -8,9 +8,33 @@
                 <form class="form-horizontal" data-ng-submit="create()" novalidate>
                     <fieldset>
                         <div class="form-group">
-                            <label class="control-label" for="name">Name</label>
+                            <label class="control-label" for="venue">Venue</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                                <input type="text" data-ng-model="venue" id="venue" class="form-control" placeholder="Venue" required>
+                            </div>
+                            <label class="control-label" for="street">Street Address</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="street" id="street" class="form-control" placeholder="Street address" required>
+                            </div>
+                            <label class="control-label" for="street">City</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="city" id="city" class="form-control" placeholder="City" required>
+                            </div>
+                            <label class="control-label" for="state">State</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="state" id="state" class="form-control" placeholder="state" required>
+                            </div>
+                            <label class="control-label" for="showDate">Show Date</label>
+                            <div class="controls">
+                                <input type="date" data-ng-model="showDate" id="showDate" class="form-control" placeholder="Show date" required>
+                            </div>
+                            <label class="control-label" for="doorsTime">Doors Time</label>
+                            <div class="controls">
+                                <input type="time" data-ng-model="doorsTime" id="doorsTime" class="form-control" placeholder="Doors time" required>
+                            </div>
+                            <label class="control-label" for="setTime">Set Time</label>
+                            <div class="controls">
+                                <input type="time" data-ng-model="setTime" id="setTime" class="form-control" placeholder="Set time" required>
                             </div>
                         </div>
                         <div class="form-group">

@@ -9,7 +9,13 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 		$scope.create = function() {
 			// Create new Show object
 			var show = new Shows ({
-				name: this.name
+				venue: this.venue,
+				street: this.street,
+				city: this.city,
+				state: this.state,
+				showDate: this.showDate,
+				doorsTime: this.doorsTime.replace(':',''),
+				setTime: this.setTime.replace(':','')
 			});
 
 			// Redirect after save
@@ -17,7 +23,12 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				$location.path('admin/shows/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.venue = '';
+				$scope.street = '';
+				$scope.city = '';
+				$scope.state = '';
+				$scope.doorsTime = '';
+				$scope.setTime = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

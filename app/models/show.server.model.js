@@ -36,16 +36,16 @@ var ShowSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	zip: {
-		type: String,
-		default: ''
+	showDate: {
+		type: Date,
+		required: 'Please fill show date'
 	},
 	doorsTime: {
-		type: Date,
+		type: String,
 		required: 'Please fill time that doors open'
 	},
 	setTime: {
-		type: Date,
+		type: String,
 		required: 'Please fill set time.'
 	}
 });
