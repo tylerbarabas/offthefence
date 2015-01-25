@@ -36,8 +36,8 @@ var ShowSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	showDate: {
-		type: Date,
+	date: {
+		type: String,
 		required: 'Please fill show date'
 	},
 	doorsTime: {

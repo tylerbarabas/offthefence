@@ -13,9 +13,9 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				street: this.street,
 				city: this.city,
 				state: this.state,
-				showDate: this.showDate,
-				doorsTime: this.doorsTime.replace(':',''),
-				setTime: this.setTime.replace(':','')
+				date: this.date,
+				doorsTime: this.doorsTime,
+				setTime: this.setTime
 			});
 
 			// Redirect after save
@@ -27,6 +27,7 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				$scope.street = '';
 				$scope.city = '';
 				$scope.state = '';
+				$scope.showDate = '';
 				$scope.doorsTime = '';
 				$scope.setTime = '';
 			}, function(errorResponse) {

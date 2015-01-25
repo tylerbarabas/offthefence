@@ -3,9 +3,10 @@
 		<div class="row">
 			<div class="page-header">
 				<h1 data-ng-bind="show.venue"></h1>
-				<p data-ng-bind="show.street"></p>
-				<p>{{show.city}}, {{show.state}}</p>
+				<p>{{show.street}}<br>{{show.city}}, {{show.state}}</p>
+				<p>{{show.date}}</p>
 				<p><strong>Doors: </strong>{{show.doorsTime}}</p>
+				<p><strong>Set: </strong>{{show.doorsTime}}</p>
 			</div>
 			<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == show.user._id))">
 				<a class="btn btn-primary" href="/#!/admin/shows/{{show._id}}/edit">

@@ -6,13 +6,13 @@
             </div>
             <div class="list-group">
                 <a data-ng-repeat="show in shows" data-ng-href="#!/admin/shows/{{show._id}}" class="list-group-item">
+                    <p><strong>{{show.venue}}</strong> -- {{show.date}}</p>
                     <small class="list-group-item-text">
                         Posted on
                         <span data-ng-bind="show.created | date:'medium'"></span>
                         by
                         <span data-ng-bind="show.user.displayName"></span>
                     </small>
-                    <h4 class="list-group-item-heading" data-ng-bind="show.name"></h4>
                 </a>
             </div>
             <div class="alert alert-warning text-center" data-ng-hide="!shows.$resolved || shows.length">
