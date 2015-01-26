@@ -6,7 +6,7 @@
             </div>
             <div class="list-group">
                 <a data-ng-repeat="show in shows" data-ng-href="#!/admin/shows/{{show._id}}" class="list-group-item">
-                    <p><strong>{{show.venue}}</strong> -- {{show.date}}</p>
+                    <p><strong>{{show.venue}}</strong> -- <span>{{show.date | date: 'mediumDate'}}</span></p>
                     <small class="list-group-item-text">
                         Posted on
                         <span data-ng-bind="show.created | date:'medium'"></span>
