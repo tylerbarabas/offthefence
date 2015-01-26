@@ -11,7 +11,7 @@
 			</div>
 			<div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 text-left">
 				<h3>Upcoming Shows</h3>
-				<div class="row" ng-repeat="show in shows | orderBy: 'date' | limitTo: 4">
+				<div class="row" ng-repeat="show in shows | orderBy: 'date' | excludePast | limitTo: 4">
 					<div class="col-md-12 show-dates">
 						{{show.date | date:'shortDate'}} {{show.venue}}  -- <small>{{show.city}}, {{show.state}}</small>
 					</div>
