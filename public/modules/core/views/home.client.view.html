@@ -1,4 +1,4 @@
-<section data-ng-controller="HomeController">
+<section data-ng-controller="HomeController" ng-init="findShows()">
 	<div class="jumbotron text-center" ng-show="mainPage">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
@@ -10,10 +10,17 @@
 				<img src="modules/core/img/natephotos/PICT0093.jpg" class="image-responsive band-photo">
 			</div>
 			<div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 text-left">
-				<h3>Upcoming Shows</h3><br>
-				<p>This show </p>
-				<p>That show</p>
-				<p>This show</p>
+				<h3>Upcoming Shows</h3>
+				<div class="row" ng-repeat="show in shows | orderBy: 'date' | limitTo: 4">
+					<div class="col-md-12 show-dates">
+						{{show.date | date:'shortDate'}} {{show.venue}}  -- <small>{{show.city}}, {{show.state}}</small>
+					</div>
+				</div><br>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/#!/shows">View all</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<br>

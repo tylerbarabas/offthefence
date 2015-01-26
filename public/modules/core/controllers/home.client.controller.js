@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Authentication','EmailLists',
-	function($scope, $timeout, Authentication, EmailLists) {
+angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Authentication','EmailLists','Shows',
+	function($scope, $timeout, Authentication, EmailLists, Shows) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
@@ -45,6 +45,11 @@ angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Auth
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+
+		// Find a list of Shows
+		$scope.findShows = function() {
+			$scope.shows = Shows.query();
 		};
 	}
 ]);

@@ -49,3 +49,6 @@ body {
 	background-color: transparent;
 	border: none;
 }
+.show-dates {
+	font-size: 20px;
+}
