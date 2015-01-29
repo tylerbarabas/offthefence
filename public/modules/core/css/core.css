@@ -21,6 +21,10 @@ body {
 .jumbotron {
 	background-color: rgba(255,255,255,.5);
 }
+.container-shows {
+	padding-right: 80px;
+	padding-left: 80px;
+}
 .logo {
 	margin-top: -40px;
 	margin-bottom: 10px;
@@ -51,4 +55,16 @@ body {
 }
 .show-dates {
 	font-size: 20px;
+}
+.show-col {
+	outline: thin dashed black;
+}
+.outline-blue {
+	outline: thin solid blue;
+}
+.header-space {
+	margin-bottom: 50px;
+}
+.shows-table {
+	background-color: rgba(255,255,255,.3);
 }

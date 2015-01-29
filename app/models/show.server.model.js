@@ -47,6 +47,9 @@ var ShowSchema = new Schema({
 	setTime: {
 		type: String,
 		required: 'Please fill set time.'
+	},
+	link: {
+		type: String
 	}
 });
 

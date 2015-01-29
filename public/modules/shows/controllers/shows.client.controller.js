@@ -15,7 +15,8 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				state: this.state,
 				date: this.date,
 				doorsTime: this.doorsTime,
-				setTime: this.setTime
+				setTime: this.setTime,
+				link: this.link
 			});
 
 			// Redirect after save
@@ -30,6 +31,7 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				$scope.showDate = '';
 				$scope.doorsTime = '';
 				$scope.setTime = '';
+				$scope.link = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -74,5 +76,23 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 				showId: $stateParams.showId
 			});
 		};
+
+		function convertTime (time) { //TODO turn this in to a directive
+
+			var split = time.split(':'),
+				hour = split[0],
+				minute = split[1],
+				ampm = 'AM';
+
+			if (hour > 12) {
+				ampm = 'PM';
+				hour -= 12;
+			}
+
+			time = hour + ':' + minute + ' ' + ampm;
+
+			return time;
+
+		}
 	}
 ]);
