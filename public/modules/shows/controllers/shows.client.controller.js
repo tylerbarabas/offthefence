@@ -75,7 +75,32 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 			$scope.show = Shows.get({ 
 				showId: $stateParams.showId
 			});
+
+			//convert times for 24hr to 12hr format
+			$scope.show.$promise.then(function(show){
+				show.setTimeConv = convertTime(show.setTime);
+				show.doorsTimeConv = convertTime(show.doorsTime);
+			});
+
 		};
+
+		var convertTime = function (time) {
+
+			var split = time.toString().split(':'),
+				hour = parseInt(split[0]),
+				minute = split[1],
+				ampm = 'AM';
+
+			if (hour > 12) {
+				ampm = 'PM';
+				hour -= 12;
+			}
+
+			time = hour + ':' + minute + ' ' + ampm;
+
+			return time;
+
+		}
 
 	}
 ]);

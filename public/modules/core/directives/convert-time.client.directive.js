@@ -10,7 +10,9 @@ angular.module('core').directive('convertTime', [
 			template: '{{time}}',
 			controller: function ($scope) {
 
-					var split = $scope.time.split(':'),
+				var convertTime = function (time) {
+
+					var split = time.toString().split(':'),
 						hour = parseInt(split[0]),
 						minute = split[1],
 						ampm = 'AM';
@@ -19,8 +21,15 @@ angular.module('core').directive('convertTime', [
 						ampm = 'PM';
 						hour -= 12;
 					}
-				
-					$scope.time = hour + ':' + minute + ' ' + ampm;
+
+					time = hour + ':' + minute + ' ' + ampm;
+
+					return time;
+
+				};
+
+				$scope.time = convertTime($scope.time);
+
 			}
 		};
 	}
