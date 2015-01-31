@@ -77,22 +77,5 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 			});
 		};
 
-		function convertTime (time) { //TODO turn this in to a directive
-
-			var split = time.split(':'),
-				hour = split[0],
-				minute = split[1],
-				ampm = 'AM';
-
-			if (hour > 12) {
-				ampm = 'PM';
-				hour -= 12;
-			}
-
-			time = hour + ':' + minute + ' ' + ampm;
-
-			return time;
-
-		}
 	}
 ]);
