@@ -1,13 +1,15 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Authentication','EmailLists','Shows',
-	function($scope, $timeout, Authentication, EmailLists, Shows) {
+angular.module('core').controller('HomeController', ['$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows',
+	function($location,$window,$scope, $timeout, Authentication, EmailLists, Shows) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
 		$scope.thankYou = false;
 		$scope.mainPage = true;
+
+		$scope.loginAllowed = false;
 
 		$scope.sayThankYou = function() {
 			$scope.mainPage = false;
@@ -51,5 +53,21 @@ angular.module('core').controller('HomeController', ['$scope', '$timeout', 'Auth
 		$scope.findShows = function() {
 			$scope.shows = Shows.query();
 		};
+
+		//press q ten times to get the log in screen
+		var timesPressed = 0;
+		angular.element($window).on('keydown', function(e) {
+			if (e.keyCode == 81) {
+				timesPressed++;
+			}
+
+			if (timesPressed > 9) {
+				$scope.loginAllowed = true;
+				timesPressed = 0;
+				$scope.$apply(function() {
+					$location.path('/signin');
+				});
+			}
+		});
 	}
 ]);
