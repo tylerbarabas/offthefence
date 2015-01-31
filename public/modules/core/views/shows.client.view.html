@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<table class="table shows-table">
 					<th class="text-center">Date</th><th class="text-center">Venue</th><th class="text-center">Address</th><th class="text-center">Doors Time</th><th class="text-center">Set Time</th>
-					<tr ng-repeat="show in shows">
+					<tr ng-repeat="show in shows | orderBy: 'date'">
 						<td>{{show.date | date:'mediumDate'}}</td><td><strong>{{show.venue}}</strong></td><td>{{show.street}}<br>{{show.city+', '+ show.state}}</td><td><convert-time time="show.doorsTime"></convert-time></td><td><convert-time time="show.setTime"></convert-time></td></td>
 					</tr>
 				</table>
