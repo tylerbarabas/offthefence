@@ -5,8 +5,8 @@
                 <h1>Shows</h1>
             </div>
             <div class="list-group">
-                <a data-ng-repeat="show in shows | orderBy:'date':'true'" data-ng-href="#!/admin/shows/{{show._id}}" class="list-group-item">
-                    <p><strong>{{show.venue}}</strong> -- <span>{{show.date | date: 'mediumDate'}}</span></p>
+                <a data-ng-repeat="show in shows | orderBy:'date'" data-ng-href="#!/admin/shows/{{show._id}}" class="list-group-item">
+                    <p><strong>{{show.venue}}</strong> -- <span>{{show.date | date: 'mediumDate'}}</span>   </p>
                     <small class="list-group-item-text">
                         Posted on
                         <span data-ng-bind="show.created | date:'medium'"></span>
