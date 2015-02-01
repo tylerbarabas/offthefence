@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows',
-	function($location,$window,$scope, $timeout, Authentication, EmailLists, Shows) {
+angular.module('core').controller('HomeController', ['$rootScope','$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows',
+	function($rootScope,$location,$window,$scope, $timeout, Authentication, EmailLists, Shows) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
@@ -54,6 +54,7 @@ angular.module('core').controller('HomeController', ['$location','$window','$sco
 			$scope.shows = Shows.query();
 		};
 
+		$rootScope.loginAllowed = false;
 		//press q ten times to get the log in screen
 		var timesPressed = 0;
 		angular.element($window).on('keydown', function(e) {
@@ -62,7 +63,7 @@ angular.module('core').controller('HomeController', ['$location','$window','$sco
 			}
 
 			if (timesPressed > 9) {
-				$scope.loginAllowed = true;
+				$rootScope.loginAllowed = true;
 				timesPressed = 0;
 				$scope.$apply(function() {
 					$location.path('/signin');
