@@ -13,7 +13,7 @@ var PhotoSchema = new Schema({
 	filepath: {
 		type: String,
 		default: '',
-		required: 'Please fill Photo name',
+		required: 'No file path',
 		trim: true
 	},
 	created: {

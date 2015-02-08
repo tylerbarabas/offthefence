@@ -1,0 +1,16 @@
+.dropbox {
+    border: 2px dotted black;
+    background-color: rgba(0,0,30,.5);
+    height: 300px;
+    width: 300px;
+    margin: 10px auto;
+    color: white;
+}
+.drag-over {
+    border: 2px dotted black;
+    background-color: rgba(0,0,0,.5);
+    height: 300px;
+    width: 300px;
+    margin: 10px auto;
+    color: white;
+}
