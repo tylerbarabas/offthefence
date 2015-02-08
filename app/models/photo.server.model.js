@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Photo Schema
  */
 var PhotoSchema = new Schema({
-	name: {
+	filepath: {
 		type: String,
 		default: '',
 		required: 'Please fill Photo name',
@@ -23,6 +23,12 @@ var PhotoSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	where: {
+		type: String
+	},
+	credit: {
+		type: String
 	}
 });
 
