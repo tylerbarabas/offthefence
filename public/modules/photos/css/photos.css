@@ -1,5 +1,5 @@
 .dropbox {
-    border: 2px dotted black;
+    border: 10px dashed black;
     background-color: rgba(0,0,30,.5);
     height: 300px;
     width: 300px;
@@ -7,7 +7,7 @@
     color: white;
 }
 .drag-over {
-    border: 2px dotted black;
+    border: 10px dashed white;
     background-color: rgba(0,0,0,.5);
     height: 300px;
     width: 300px;

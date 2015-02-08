@@ -9,6 +9,9 @@ module.exports = function(app) {
 		.get(photos.list)
 		.post(users.requiresLogin, photos.create);
 
+	app.route('/photos/upload')
+		.post(photos.upload);
+
 	app.route('/photos/:photoId')
 		.get(photos.read)
 		.put(users.requiresLogin, photos.hasAuthorization, photos.update)

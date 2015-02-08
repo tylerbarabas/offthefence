@@ -7,8 +7,8 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="dropbox text-center" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="drag-over">
-                            <h3>Drop photos here.</h3>
+                        <div class="dropbox text-center" ng-multiple="true" allow-dir="true" ng-accept="'image/*,application/pdf'" ng-model="files" ng-file-drop ng-file-select="onFileSelect($files)" drag-over-class="drag-over">
+                            <h3>Drop photos <br> or click to choose</h3>
                         </div>
                     </div>
                 </div>

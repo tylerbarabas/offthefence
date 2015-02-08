@@ -6,7 +6,9 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Photo = mongoose.model('Photo'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	multiparty = require('multiparty'),
+	path = require('path');
 
 /**
  * Create a Photo
@@ -104,4 +106,25 @@ exports.hasAuthorization = function(req, res, next) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
+};
+
+exports.upload = function(req, res) {
+	var appDir = path.dirname(require.main.filename),
+		moduleOrigin = req.get('moduleorigin'),
+		dest = appDir + '/public/modules/' + moduleOrigin + '/img/';
+
+
+	var form = new multiparty.Form({uploadDir: dest});
+	form.on('error',function(err) {
+		console.log('Error parsing form: ' + err.stack);
+	});
+
+	form.parse(req, function (err, fields, files){
+		if (!err) {
+			console.log('File loaded to:' + files.file[0].path);
+			res.status(200).json({ 'filepath': files.file[0].path });
+		} else {
+			res.send(500);
+		}
+	});
 };
