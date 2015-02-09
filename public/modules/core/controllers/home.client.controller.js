@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$rootScope','$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows',
-	function($rootScope,$location,$window,$scope, $timeout, Authentication, EmailLists, Shows) {
+angular.module('core').controller('HomeController', ['$rootScope','$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows', 'Photos',
+	function($rootScope,$location,$window,$scope, $timeout, Authentication, EmailLists, Shows, Photos) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
@@ -53,6 +53,11 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		$scope.findShows = function() {
 			$scope.shows = Shows.query();
 		};
+
+		//Find a list of photos
+		$scope.findPhotos = function() {
+			$scope.photos = Photos.query();
+		}
 
 		$rootScope.loginAllowed = false;
 		//press q ten times to get the log in screen

@@ -6,19 +6,19 @@ angular.module('photos').config(['$stateProvider',
 		// Photos state routing
 		$stateProvider.
 		state('listPhotos', {
-			url: '/photos',
+			url: '/admin/photos',
 			templateUrl: 'modules/photos/views/list-photos.client.view.html'
 		}).
 		state('createPhoto', {
-			url: '/photos/create',
+			url: '/admin/photos/create',
 			templateUrl: 'modules/photos/views/create-photo.client.view.html'
 		}).
 		state('viewPhoto', {
-			url: '/photos/:photoId',
+			url: '/admin/photos/:photoId',
 			templateUrl: 'modules/photos/views/view-photo.client.view.html'
 		}).
 		state('editPhoto', {
-			url: '/photos/:photoId/edit',
+			url: '/admin/photos/:photoId/edit',
 			templateUrl: 'modules/photos/views/edit-photo.client.view.html'
 		});
 	}

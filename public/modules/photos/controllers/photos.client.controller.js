@@ -8,13 +8,13 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 		// Create new Photo
 		$scope.create = function() {
 
-			if (typeof $scope.photos == 'undefined' || $scope.photos.length < 1) {
+			if (typeof $scope.createPhotos == 'undefined' || $scope.createPhotos.length < 1) {
 
 				$scope.error = 'Upload at least 1 image!';
 
 			}
 
-			angular.forEach($scope.photos,function(filepath,key){
+			angular.forEach($scope.createPhotos,function(filepath,key){
 
 				// Create new Photo object
 				var photo = new Photos ({
@@ -25,7 +25,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 				photo.$save(function(response) {
 					//$location.path('photos/' + response._id);
-					$scope.photos = [];
+					$scope.createPhotos = [];
 
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
@@ -95,13 +95,13 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 				}).success(function(data, status, headers, config) {
 					// file is uploaded successfully
 
-					if (typeof $scope.photos == 'undefined') $scope.photos = [];
+					if (typeof $scope.createPhotos == 'undefined') $scope.createPhotos = [];
 
 					var path = data.filepath,
 						filename = path.replace(/^.*[\\\/]/, ''),
 						relPath = '/modules/photos/img/' + filename;
 
-					$scope.photos.push(relPath);
+					$scope.createPhotos.push(relPath);
 					$scope.error = '';
 				})
 				.error(function(err){
