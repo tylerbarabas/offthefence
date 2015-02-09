@@ -7,19 +7,30 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 		// Create new Photo
 		$scope.create = function() {
-			// Create new Photo object
-			var photo = new Photos ({
-				name: this.name
-			});
 
-			// Redirect after save
-			photo.$save(function(response) {
-				$location.path('photos/' + response._id);
+			if (typeof $scope.photos == 'undefined' || $scope.photos.length < 1) {
 
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Upload at least 1 image!';
+
+			}
+
+			angular.forEach($scope.photos,function(filepath,key){
+
+				// Create new Photo object
+				var photo = new Photos ({
+					filepath: filepath,
+					credit: $scope.credit,
+					where: $scope.where
+				});
+
+				photo.$save(function(response) {
+					//$location.path('photos/' + response._id);
+					$scope.photos = [];
+
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+
 			});
 		};
 
@@ -64,7 +75,6 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 		};
 
 		$scope.onFileSelect = function($files) {
-			console.log($files);
 			//$files: an array of files selected, each file has name, size, and type.
 			for (var i = 0; i < $files.length; i++) {
 				var file = $files[i];
@@ -84,7 +94,15 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
 				}).success(function(data, status, headers, config) {
 					// file is uploaded successfully
-					console.log(data);
+
+					if (typeof $scope.photos == 'undefined') $scope.photos = [];
+
+					var path = data.filepath,
+						filename = path.replace(/^.*[\\\/]/, ''),
+						relPath = '/modules/photos/img/' + filename;
+
+					$scope.photos.push(relPath);
+					$scope.error = '';
 				})
 				.error(function(err){
 					console.log('Error: ', err);

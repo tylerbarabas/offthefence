@@ -14,3 +14,10 @@
     margin: 10px auto;
     color: white;
 }
+.preview-img {
+    height: 155px;
+}
+.photo-holder {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

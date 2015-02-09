@@ -32,6 +32,11 @@
                         </form>
                     </div>
                 </div>
+                <div class="row">
+                    <div ng-repeat="photo in photos" class="col-md-3 photo-holder">
+                        <img ng-src="{{photo}}" class="preview-img">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
