@@ -8,6 +8,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$scope.thankYou = false;
 		$scope.mainPage = true;
+		$scope.showPhotoPreview = false;
 
 		$scope.loginAllowed = false;
 
@@ -74,6 +75,42 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 					$location.path('/signin');
 				});
 			}
+
+			$window.setTimeout(function(){timesPressed = 0},10000);
 		});
+
+		$scope.showPreview = function(index) {
+
+			$scope.showPhotoPreview = true;
+			$scope.filepath = $scope.photos[index].filepath;
+
+			var photoPreview = document.getElementById('photo-preview');
+
+			//I know I want the height of the photo to be 80%
+			var photoHeight = $window.innerHeight*.8;
+
+			//Go ahead and set the height of the photo
+			var displayPhoto = document.getElementById('display-photo');
+				displayPhoto.style.height = photoHeight+'px';
+
+			//get the dimensions of the thumbnail
+			var thumbnail = document.getElementById('thumbnail'+index),
+				thumbnailWidth = thumbnail.offsetWidth,
+				thumnailHeight = thumbnail.offsetHeight;
+
+			//If the thumbnail was x wide at y height, how wide will it be now?
+			var photoWidth = (photoHeight/thumnailHeight) * thumbnailWidth;
+
+			//calculate the center position
+			var deadCenter = $window.innerWidth/2,
+				halfOffset = photoWidth/2,
+				centerPhoto = deadCenter - halfOffset;
+
+			console.log(deadCenter,halfOffset,centerPhoto);
+
+			//center the photo
+			photoPreview.style.left = centerPhoto+'px';
+
+		};
 	}
 ]);

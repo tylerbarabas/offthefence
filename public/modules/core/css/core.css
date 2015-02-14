@@ -68,3 +68,17 @@ body {
 .shows-table {
 	background-color: rgba(255,255,255,.3);
 }
+.thumbnail {
+	height: 155px;
+	cursor: pointer;
+}
+.photo-preview {
+	position: fixed;
+	top: 60px;
+	left: -1000px;
+	background-color: black;
+	text-align: center;
+}
+.display-photo {
+	border: thick solid white;
+}
