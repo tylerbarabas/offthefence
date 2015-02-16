@@ -7,7 +7,14 @@
 			</div>
 		</div>
 	</div>
-	<div id="photo-preview" class="photo-preview">
+	<div id="photo-preview" class="photo-preview" ng-show="showPhotoPreview">
 		<img ng-src="{{filepath}}" id="display-photo" class="display-photo" ng-show="showPhotoPreview">
 	</div>
+	<div id="exitIcon" class="exitIcon" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
+		<i class="glyphicon-remove"></i>
+	</div>
+	<div id="dim-overlay" class="dim-overlay" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
+	</div>
+	<i class="icon icon-chevron-left icon-size-4 text-contrast" ng-show="showPhotoPreview"></i>
+	<i class="icon icon-chevron-right icon-size-4 text-contrast" ng-show="showPhotoPreview"></i>
 </section>

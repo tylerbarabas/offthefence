@@ -58,7 +58,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		//Find a list of photos
 		$scope.findPhotos = function() {
 			$scope.photos = Photos.query();
-		}
+		};
 
 		$rootScope.loginAllowed = false;
 		//press q ten times to get the log in screen
@@ -98,15 +98,13 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				thumbnailWidth = thumbnail.offsetWidth,
 				thumnailHeight = thumbnail.offsetHeight;
 
-			//If the thumbnail was x wide at y height, how wide will it be now?
+			//If the thumbnail was x wide at thumbnail height, how wide will it be now?
 			var photoWidth = (photoHeight/thumnailHeight) * thumbnailWidth;
 
 			//calculate the center position
 			var deadCenter = $window.innerWidth/2,
 				halfOffset = photoWidth/2,
 				centerPhoto = deadCenter - halfOffset;
-
-			console.log(deadCenter,halfOffset,centerPhoto);
 
 			//center the photo
 			photoPreview.style.left = centerPhoto+'px';

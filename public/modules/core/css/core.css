@@ -71,14 +71,37 @@ body {
 .thumbnail {
 	height: 155px;
 	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
 }
 .photo-preview {
 	position: fixed;
 	top: 60px;
-	left: -1000px;
 	background-color: black;
 	text-align: center;
-}
-.display-photo {
 	border: thick solid white;
+	padding: 1px;
+	z-index:2
+}
+.exitIcon {
+	cursor: pointer;
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	background-color: orange;
+	height: 20px;
+	width: 20px;
+	z-index: 9999;
+}
+.dim-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	background-color: rgba(0,0,0,.8);
+}
+.photo-holder {
+	overflow: hidden;
 }
