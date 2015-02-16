@@ -115,6 +115,9 @@ body {
 	font-size: 55px;
 	cursor: pointer;
 }
+.left-arrow:hover{
+	color: #99CCFF;
+}
 .right-arrow {
 	position: fixed;
 	top: 45%;
@@ -123,6 +126,9 @@ body {
 	color: white;
 	font-size: 55px;
 	cursor: pointer;
+}
+.right-arrow:hover {
+	color: #99CCFF;
 }
 .no-select {
 	-webkit-touch-callout: none;

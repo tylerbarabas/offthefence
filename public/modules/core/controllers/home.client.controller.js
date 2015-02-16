@@ -71,6 +71,46 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			});
 		};
 
+		$scope.showPreview = function(index) {
+
+			if (typeof $scope.photos[index] == 'undefined' && index > 0)
+				index = 0;
+			else if (typeof $scope.photos[index] == 'undefined' && index < 0)
+				index = $scope.photos.length - 1;
+
+			$scope.photoIndex = index;
+
+			$scope.showPhotoPreview = true;
+			$scope.filepath = $scope.photos[index].filepath;
+
+			var photoPreview = document.getElementById('photo-preview');
+
+			//I know I want the height of the photo to be 80%
+			var photoHeight = $window.innerHeight*.8;
+
+			//Go ahead and set the height of the photo
+			var displayPhoto = document.getElementById('display-photo');
+				displayPhoto.style.height = photoHeight+'px';
+				displayPhoto.src = $scope.filepath;
+
+			//get the dimensions of the thumbnail
+			var thumbnail = document.getElementById('thumbnail'+index),
+				thumbnailWidth = thumbnail.offsetWidth,
+				thumnailHeight = thumbnail.offsetHeight;
+
+			//If the thumbnail was x wide at thumbnail height, how wide will it be now?
+			var photoWidth = (photoHeight/thumnailHeight) * thumbnailWidth;
+
+			//calculate the center position
+			var deadCenter = $window.innerWidth/2,
+				halfOffset = photoWidth/2,
+				centerPhoto = deadCenter - halfOffset;
+
+			//center the photo
+			photoPreview.style.left = centerPhoto+'px';
+
+		};
+
 		$rootScope.loginAllowed = false;
 		//press q ten times to get the log in screen
 		var timesPressed = 0;
@@ -96,44 +136,5 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				$scope.showPreview($scope.photoIndex + 1);
 			}
 		});
-
-		$scope.showPreview = function(index) {
-
-			if (typeof $scope.photos[index] == 'undefined' && index > 0)
-				index = 0;
-			else if (typeof $scope.photos[index] == 'undefined' && index < 0)
-				index = $scope.photos.length - 1;
-
-			$scope.photoIndex = index;
-
-			$scope.showPhotoPreview = true;
-			$scope.filepath = $scope.photos[index].filepath;
-
-			var photoPreview = document.getElementById('photo-preview');
-
-			//I know I want the height of the photo to be 80%
-			var photoHeight = $window.innerHeight*.8;
-
-			//Go ahead and set the height of the photo
-			var displayPhoto = document.getElementById('display-photo');
-				displayPhoto.style.height = photoHeight+'px';
-
-			//get the dimensions of the thumbnail
-			var thumbnail = document.getElementById('thumbnail'+index),
-				thumbnailWidth = thumbnail.offsetWidth,
-				thumnailHeight = thumbnail.offsetHeight;
-
-			//If the thumbnail was x wide at thumbnail height, how wide will it be now?
-			var photoWidth = (photoHeight/thumnailHeight) * thumbnailWidth;
-
-			//calculate the center position
-			var deadCenter = $window.innerWidth/2,
-				halfOffset = photoWidth/2,
-				centerPhoto = deadCenter - halfOffset;
-
-			//center the photo
-			photoPreview.style.left = centerPhoto+'px';
-
-		};
 	}
 ]);
