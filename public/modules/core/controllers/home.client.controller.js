@@ -12,6 +12,8 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$scope.loginAllowed = false;
 
+		$scope.photoIndex = 0;
+
 		$scope.sayThankYou = function() {
 			$scope.mainPage = false;
 
@@ -58,6 +60,15 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		//Find a list of photos
 		$scope.findPhotos = function() {
 			$scope.photos = Photos.query();
+
+			$scope.photos.$promise.then(function(photos){
+				//get number of pages
+				$scope.pages = photos.length / 12; //round this up
+
+				//put the numbers in the paginator
+
+				//start on page 1
+			});
 		};
 
 		$rootScope.loginAllowed = false;
@@ -66,6 +77,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		angular.element($window).on('keydown', function(e) {
 			if (e.keyCode == 81) {
 				timesPressed++;
+				$window.setTimeout(function(){timesPressed = 0},10000);
 			}
 
 			if (timesPressed > 9) {
@@ -76,10 +88,23 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				});
 			}
 
-			$window.setTimeout(function(){timesPressed = 0},10000);
+			if (e.keyCode == 37 && $scope.showPhotoPreview) {
+				$scope.showPreview($scope.photoIndex - 1);
+			}
+
+			if (e.keyCode == 39 && $scope.showPhotoPreview) {
+				$scope.showPreview($scope.photoIndex + 1);
+			}
 		});
 
 		$scope.showPreview = function(index) {
+
+			if (typeof $scope.photos[index] == 'undefined' && index > 0)
+				index = 0;
+			else if (typeof $scope.photos[index] == 'undefined' && index < 0)
+				index = $scope.photos.length - 1;
+
+			$scope.photoIndex = index;
 
 			$scope.showPhotoPreview = true;
 			$scope.filepath = $scope.photos[index].filepath;
