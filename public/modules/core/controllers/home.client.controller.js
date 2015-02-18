@@ -13,6 +13,8 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		$scope.loginAllowed = false;
 
 		$scope.photoIndex = 0;
+		$scope.photoPage = 1;
+		$scope.numPerPage = 12;
 
 		$scope.sayThankYou = function() {
 			$scope.mainPage = false;
@@ -62,12 +64,12 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			$scope.photos = Photos.query();
 
 			$scope.photos.$promise.then(function(photos){
+
+				$scope.pages = Math.ceil(photos.length/12);
+
 				//get number of pages
-				$scope.pages = photos.length / 12; //round this up
+				$scope.filteredPhotos = photos.slice(0,12);
 
-				//put the numbers in the paginator
-
-				//start on page 1
 			});
 		};
 
@@ -135,6 +137,21 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			if (e.keyCode == 39 && $scope.showPhotoPreview) {
 				$scope.showPreview($scope.photoIndex + 1);
 			}
+		});
+
+		$scope.prevPage = function () {
+			if ($scope.photoPage > 1) $scope.photoPage--;
+		};
+
+		$scope.nextPage = function () {
+			if ($scope.photoPage < $scope.pages) $scope.photoPage++;
+		};
+
+		$scope.$watch('photoPage + numPerPage', function() {
+			var begin = (($scope.photoPage - 1) * $scope.numPerPage),
+				end = begin + $scope.numPerPage;
+
+			$scope.filteredPhotos = $scope.photos.slice(begin, end);
 		});
 	}
 ]);

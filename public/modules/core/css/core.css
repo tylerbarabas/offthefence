@@ -138,3 +138,7 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 }
+.page-arrow {
+	cursor: pointer;
+	font-size: 25px;
+}
