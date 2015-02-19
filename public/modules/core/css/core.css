@@ -21,16 +21,12 @@ body {
 .jumbotron {
 	background-color: rgba(255,255,255,.5);
 }
-.container-shows {
-	padding-right: 80px;
-	padding-left: 80px;
-}
 .logo {
 	margin-top: -40px;
 	margin-bottom: 10px;
 }
 .band-photo {
-	width: 100%;
+	width: 130%;
 }
 
 .ng-enter {
@@ -49,9 +45,9 @@ body {
 	display: block!important;
 }
 .navbar{
-	background-image: none;
-	background-color: transparent;
-	border: none;
+	/*background-image: none;*/
+	/*background-color: red;*/
+	/*border: none;*/
 }
 .show-dates {
 	font-size: 20px;
