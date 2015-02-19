@@ -65,10 +65,12 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 			$scope.photos.$promise.then(function(photos){
 
-				$scope.pages = Math.ceil(photos.length/12);
+				if (photos.length > 0) {
+					$scope.pages = Math.ceil(photos.length/12);
+					//get number of pages
+					$scope.filteredPhotos = photos.slice(0,12);
+				}
 
-				//get number of pages
-				$scope.filteredPhotos = photos.slice(0,12);
 
 			});
 		};

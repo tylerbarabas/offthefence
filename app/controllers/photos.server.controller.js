@@ -124,7 +124,7 @@ exports.upload = function(req, res) {
 			console.log('File loaded to:' + files.file[0].path);
 			res.status(200).json({ 'filepath': files.file[0].path });
 		} else {
-			res.send(500);
+			res.status(500).send(err);
 		}
 	});
 };
