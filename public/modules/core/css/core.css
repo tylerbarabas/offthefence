@@ -30,6 +30,7 @@ body {
 }
 
 .ng-enter {
+	animation: fadeInDown .4s;
 	-webkit-animation: fadeInDown .4s;
 	display: block!important;
 }

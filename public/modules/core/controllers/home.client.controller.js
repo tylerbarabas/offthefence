@@ -94,24 +94,20 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 			//Go ahead and set the height of the photo
 			var displayPhoto = document.getElementById('display-photo');
-				displayPhoto.style.height = photoHeight+'px';
-				displayPhoto.src = $scope.filepath;
 
-			//get the dimensions of the thumbnail
-			var thumbnail = document.getElementById('thumbnail'+index),
-				thumbnailWidth = thumbnail.offsetWidth,
-				thumnailHeight = thumbnail.offsetHeight;
+			displayPhoto.addEventListener('load',function(){
+				//calculate the center position
+				var deadCenter = $window.innerWidth/2,
+					halfOffset = displayPhoto.offsetWidth/2,
+					centerPhoto = deadCenter - halfOffset;
 
-			//If the thumbnail was x wide at thumbnail height, how wide will it be now?
-			var photoWidth = (photoHeight/thumnailHeight) * thumbnailWidth;
+				//center the photo
+				photoPreview.style.left = centerPhoto+'px';
+			});
 
-			//calculate the center position
-			var deadCenter = $window.innerWidth/2,
-				halfOffset = photoWidth/2,
-				centerPhoto = deadCenter - halfOffset;
+			displayPhoto.style.height = photoHeight+'px';
+			displayPhoto.src = $scope.filepath;
 
-			//center the photo
-			photoPreview.style.left = centerPhoto+'px';
 
 		};
 
