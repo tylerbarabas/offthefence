@@ -21,6 +21,10 @@ body {
 .jumbotron {
 	background-color: rgba(255,255,255,.5);
 }
+.ng-enter {
+	-webkit-animation: fadeIn .6s;
+	display: block!important;
+}
 .logo {
 	margin-top: -40px;
 	margin-bottom: 10px;
@@ -29,14 +33,6 @@ body {
 	width: 130%;
 }
 
-.ng-enter {
-	animation: fadeInDown .4s;
-	-webkit-animation: fadeInDown .4s;
-	display: block!important;
-}
-/*.ng-enter-active {*/
-	/*opacity: 1;*/
-/*}*/
 .jumbotron.ng-hide-add {
 	-webkit-animation: bounceOutLeft .6s;
 	display: block!important;
@@ -65,7 +61,7 @@ body {
 .shows-table {
 	background-color: rgba(255,255,255,.3);
 }
-.thumbnail {
+.thumbnail {;
 	height: 155px;
 	cursor: pointer;
 	margin-left: auto;

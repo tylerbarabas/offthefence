@@ -16,6 +16,8 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		$scope.photoPage = 1;
 		$scope.numPerPage = 12;
 
+		$rootScope.imagesPreloaded = false;
+
 		$scope.sayThankYou = function() {
 			$scope.mainPage = false;
 
@@ -62,13 +64,19 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		//Find a list of photos
 		$scope.findPhotos = function() {
 			$scope.photos = Photos.query();
-
 			$scope.photos.$promise.then(function(photos){
-
 				if (photos.length > 0) {
 					$scope.pages = Math.ceil(photos.length/12);
 					//get number of pages
 					$scope.filteredPhotos = photos.slice(0,12);
+
+					var preload = [];
+					//pre-load images
+					for (var i=0;i<photos.length;i++) {
+						preload[i] = new Image();
+						preload[i].src = photos[i].filepath;
+					}
+
 				}
 
 
@@ -151,5 +159,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 			$scope.filteredPhotos = $scope.photos.slice(begin, end);
 		});
+
+		$scope.findPhotos();
 	}
 ]);
