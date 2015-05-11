@@ -28,11 +28,12 @@ body {
 .logo {
 	margin-top: -40px;
 	margin-bottom: 10px;
+	height: 400px;
+	width: auto;
 }
-.band-photo {
-	width: 130%;
+#next-show {
+	margin-top: 80px;
 }
-
 .jumbotron.ng-hide-add {
 	-webkit-animation: bounceOutLeft .6s;
 	display: block!important;
@@ -41,13 +42,8 @@ body {
 	-webkit-animation: bounceInLeft .6s;
 	display: block!important;
 }
-.navbar{
-	/*background-image: none;*/
-	/*background-color: red;*/
-	/*border: none;*/
-}
 .show-dates {
-	font-size: 20px;
+	font-size: 15px;
 }
 .show-col {
 	outline: thin dashed black;
@@ -134,4 +130,18 @@ body {
 .page-arrow {
 	cursor: pointer;
 	font-size: 25px;
+}
+.soundctrl {
+	color: white;
+	font-size: 25px;
+	margin: 10px;
+	cursor: pointer;
+}
+.soundctrl:hover{
+	color: #99CCFF;
+}
+.band-photo {
+	margin-top: 80px;
+	width: 250px;
+	border-radius: 15px;
 }
