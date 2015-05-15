@@ -2,10 +2,10 @@
 	<div class="jumbotron text-center" ng-show="mainPage">
 		<div class="row">
 			<div class="col-md-3" id="next-show">
-				<h3>Next Show</h3>
 				<div class="row" ng-repeat="show in shows | orderBy: 'date' | excludePast | limitTo: 1">
+					<h2>Next Show is on<br> {{show.date | date:'EEE M-d'}}</h2>
 					<div class="col-md-12 show-dates">
-					<b>{{show.date | date:'shortDate'}}</b> {{show.venue}} <br>
+					{{show.venue}} <br>
 						<small>
 							{{show.street}}<br>
 							{{show.city}}, {{show.state}}<br>
@@ -18,13 +18,13 @@
 				<img alt="Off The Fence" class="text-center logo" src="modules/core/img/brand/logo.png" />
 			</div>
 			<div class="col-md-3">
-				<img src="modules/core/img/natephotos/PICT0093.jpg" class="band-photo">
+				<img src="modules/core/img/natephotos/PICT0093.jpg" class="band-photo img-responsive">
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<p class="lead">
-				<strong>Join our mailing list!</strong>
+				<h2>Join our mailing list!</h2>
 				<form class="form-inline" ng-submit="saveToMailingList()">
 
 					<label for="email"></label>

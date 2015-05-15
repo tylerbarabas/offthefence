@@ -1,6 +1,11 @@
+@font-face {
+	font-family: edmunds;
+	src: url('/lib/edmunds/edmunds.otf');
+}
 body {
 	background-image: url('../img/natephotos/PICT0035.jpg');
 	background-size: 100% auto;
+	font-family: edmunds;
 }
 
 .content {
@@ -43,7 +48,7 @@ body {
 	display: block!important;
 }
 .show-dates {
-	font-size: 15px;
+	font-size: 20px;
 }
 .show-col {
 	outline: thin dashed black;
@@ -142,6 +147,16 @@ body {
 }
 .band-photo {
 	margin-top: 80px;
-	width: 250px;
+	width: 100%;
 	border-radius: 15px;
+}
+.navbar-brand {
+	font-size: 25px;
+}
+.shows-table-header{
+	font-size: 26px;
+	text-decoration: underline;
+}
+.shows-table-data {
+	font-size: 18px;
 }
