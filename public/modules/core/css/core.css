@@ -24,7 +24,7 @@ body {
 	border-color: #78FA89;
 }
 .jumbotron {
-	background-color: rgba(255,255,255,.5);
+	background-color: rgba(255,255,255,.6);
 }
 .ng-enter {
 	-webkit-animation: fadeIn .6s;
@@ -159,4 +159,6 @@ body {
 }
 .shows-table-data {
 	font-size: 18px;
+.bio-text {
+	text-align: left;
 }
