@@ -3,11 +3,16 @@
 	src: url('/lib/edmunds/edmunds.otf');
 }
 body {
+	/*background-image: url('../img/bg/otf_bg1.jpg');*/
 	background-image: url('../img/natephotos/PICT0035.jpg');
 	background-size: 100% auto;
 	font-family: edmunds;
 }
-
+.navbar{
+		/*background-image: none;*/
+		/*background-color: #F58869;*/
+		/*border: none;*/
+}
 .content {
 	margin-top: 50px;
 }
@@ -159,6 +164,11 @@ body {
 }
 .shows-table-data {
 	font-size: 18px;
+}
 .bio-text {
 	text-align: left;
+}
+.bio-photo {
+	width: 95%;
+	margin: 10px;
 }
