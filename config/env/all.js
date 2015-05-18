@@ -29,7 +29,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/ng-file-upload/angular-file-upload-shim.js',
-				'public/lib/ng-file-upload/angular-file-upload.js'
+				'public/lib/ng-file-upload/angular-file-upload.js',
+				'public/lib/createjs/createjs-2014.12.12.min.js'
 
 			]
 		},
