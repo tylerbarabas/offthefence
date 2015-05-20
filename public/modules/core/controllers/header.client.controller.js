@@ -6,22 +6,88 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
+		var sndList = [],
+		sndIndex = 0,
+		currentLoadedSnd = '',
+		sndPlaying = false;
+		
+		sndList.push('modules/core/snd/thisseemstobeworking.mp3');
+
 		$scope.startMusic = function() {
-                        console.log('startMusic');
-                        createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
-                        createjs.Sound.alternateExtensions = ["mp3"];
-                        createjs.Sound.on("fileload", createjs.proxy($scope.loadHandler));
-                        createjs.Sound.registerSound("modules/core/snd/thisseemstobeworking.mp3", "sound");
+			
+			$('#play').removeClass('glyphicon-play').addClass('glyphicon-pause');
+	
+			var path = sndList[sndIndex];			
+			
+			if (sndPlaying) {
+				if (!$scope.sndInstance.getPaused()) {
+					$scope.pauseMusic();
+					$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
+					return;
+				} else {
+					$scope.sndInstance.play();
+				}
+			} else {
+				
+				if (currentLoadedSnd != path) {
+
+                              	 	createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
+                                	createjs.Sound.alternateExtensions = ["mp3"];
+	  				createjs.Sound.on("fileload", createjs.proxy($scope.playSound));
+                                	createjs.Sound.registerSound("modules/core/snd/thisseemstobeworking.mp3", "sound");
+                        	} else {
+                                	$scope.playSound();
+                        	}
+
+			}
+			
+			currentLoadedSnd = path;
+		 };
+
+	
+                $scope.playSound = function() {
+			
+			if (!sndPlaying) {
+				$scope.sndInstance = createjs.Sound.play("sound");
+                        	$scope.sndInstance.volume = 1;
+				sndPlaying = true;
+				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished));
+			}
                 };
 
-                $scope.loadHandler = function() {
-                        var instance = createjs.Sound.play("sound");
-                        instance.volume = 1;
-                };
+		$scope.sndFinished = function() {
+			sndPlaying = false;
+			$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
+		};
 
                 $scope.stopMusic = function() {
                         createjs.Sound.stop("sound");
+			$scope.sndFinished();
                 };
+
+		$scope.changeSong = function(index){
+			if (angular.isNumber(index)) {
+				sndIndex = index;
+			} else if (index == 'next') {
+				sndIndex++;
+			} else if (index == 'prev') {
+				sndIndex--;
+			}
+			if (sndIndex >= sndList.length) { 
+				sndIndex = 0;
+			} else if (sndIndex < 0) {
+				sndIndex = sndList.length - 1;
+			}
+		
+			if (sndPlaying) {
+				$scope.stopMusic();
+				$scope.startMusic();
+			}
+		};
+
+		$scope.pauseMusic = function() {
+			$scope.sndInstance.pause();
+		};
 
 
 		$scope.toggleCollapsibleMenu = function() {
