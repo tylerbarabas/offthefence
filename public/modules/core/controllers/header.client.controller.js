@@ -11,7 +11,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		currentLoadedSnd = '',
 		sndPlaying = false;
 		
-		sndList.push('modules/core/snd/thisseemstobeworking.mp3');
+		sndList.push('modules/core/snd/Howl_At_The_Moon.mp3');
 
 		$scope.startMusic = function() {
 			
@@ -34,7 +34,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
                               	 	createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
                                 	createjs.Sound.alternateExtensions = ["mp3"];
 	  				createjs.Sound.on("fileload", createjs.proxy($scope.playSound));
-                                	createjs.Sound.registerSound("modules/core/snd/thisseemstobeworking.mp3", "sound");
+                                	createjs.Sound.registerSound(sndList[sndIndex], "sound");
                         	} else {
                                 	$scope.playSound();
                         	}

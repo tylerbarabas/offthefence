@@ -165,8 +165,9 @@ body {
 .shows-table-data {
 	font-size: 18px;
 }
-.bio-text {
+.jumbotron p.bio-text {
 	text-align: left;
+	font-size: 19px;
 }
 .bio-photo {
 	width: 95%;
@@ -175,6 +176,6 @@ body {
 .band-video{
 	margin: 20px;
 }
-.form-control, .btn, .shows-table-header, .shows-table-data {
+.form-control, .btn, .shows-table-header, .shows-table-data, .bio-text {
 	font-family: Arial, Helvetica, sans-serif;
 }
