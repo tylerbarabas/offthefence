@@ -175,3 +175,6 @@ body {
 .band-video{
 	margin: 20px;
 }
+.form-control, .btn, .shows-table-header, .shows-table-data {
+	font-family: Arial, Helvetica, sans-serif;
+}
