@@ -36,13 +36,9 @@ body {
 	display: block!important;
 }
 .logo {
-	margin-top: -40px;
+	margin-top: -10px;
 	margin-bottom: 10px;
-	height: 400px;
-	width: auto;
-}
-#next-show {
-	margin-top: 80px;
+	width: 150%;
 }
 .jumbotron.ng-hide-add {
 	-webkit-animation: bounceOutLeft .6s;
@@ -151,12 +147,12 @@ body {
 	color: #99CCFF;
 }
 .band-photo {
-	margin-top: 80px;
+	margin-top: 15%;
 	width: 100%;
 	border-radius: 15px;
 }
 .navbar-brand {
-	font-size: 25px;
+	font-size: 20px;
 }
 .shows-table-header{
 	font-size: 26px;
@@ -179,3 +175,53 @@ body {
 .form-control, .btn, .shows-table-header, .shows-table-data, .bio-text {
 	font-family: Arial, Helvetica, sans-serif;
 }
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+
+	#mailing-list.form-inline .form-control {
+		width: 20%;
+		display: inline;
+	}
+
+	h2 {
+
+                font-size: 22px;
+                margin-top: 5px;
+                margin-bottom: 0px;
+        }
+
+        .show-dates {
+                font-size: 16px;
+        }
+
+
+
+}
+@media only screen and (max-width: 600px) {
+
+	h2 {
+		
+		font-size: 18px;
+		margin-top: 5px;
+		margin-bottom: 0px;
+	}
+
+	.show-dates {
+		font-size: 12px;
+	}
+
+}
+@media only screen and (max-width: 450px) {
+
+        h2 {
+        
+                font-size: 16px;
+                margin-top: 5px;
+                margin-bottom: 0px;
+        }
+
+        .show-dates {
+                font-size: 11px;
+        }
+
+}
+
