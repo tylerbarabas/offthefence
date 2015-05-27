@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<table class="table shows-table">
-					<th class="text-center shows-table-header">Date</th><th class="text-center shows-table-header">Venue</th><th class="text-center shows-table-header">Address</th><th class="text-center shows-table-header">Doors Time</th><th class="text-center shows-table-header">Set Time</th>
+					<th class="text-center shows-table-header">Date</th><th class="text-center shows-table-header">Venue</th><th class="text-center shows-table-header">Address</th><th class="text-center shows-table-header">Doors</th><th class="text-center shows-table-header">Set</th>
 					<tr class="shows-table-data" ng-repeat="show in shows | orderBy: 'date' | excludePast">
 						<td>{{show.date | date:'mediumDate'}}</td><td><strong>{{show.venue}}</strong></td><td>{{show.street}}<br>{{show.city+', '+ show.state}}</td><td><convert-time time="show.doorsTime"></convert-time></td><td><convert-time time="show.setTime"></convert-time></td></td>
 					</tr>

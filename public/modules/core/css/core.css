@@ -64,7 +64,6 @@ body {
 	background-color: rgba(255,255,255,.3);
 }
 .thumbnail {;
-	height: 155px;
 	cursor: pointer;
 	margin-left: auto;
 	margin-right: auto;
@@ -100,6 +99,7 @@ body {
 }
 .photo-holder {
 	overflow: hidden;
+	height: 350px;
 }
 .left-arrow {
 	position: fixed;
@@ -175,6 +175,13 @@ body {
 .form-control, .btn, .shows-table-header, .shows-table-data, .bio-text {
 	font-family: Arial, Helvetica, sans-serif;
 }
+.nav li {
+	float: right;
+	display: inline-block;
+}
+#join {
+	margin: 10px;
+}
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
 
 	#mailing-list.form-inline .form-control {
@@ -193,10 +200,23 @@ body {
                 font-size: 16px;
         }
 
-
+	.photo-holder {
+        	overflow: hidden;
+        	height: 270px;
+	}
+	
+	.shows-table-header {
+		font-size: 20px;
+	}
+	.shows-table-data {
+		font-size: 16px;
+	}
+	.jumbotron p.bio-text {
+		font-size: 18px;
+	}
 
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
 	h2 {
 		
@@ -208,7 +228,20 @@ body {
 	.show-dates {
 		font-size: 12px;
 	}
+	.photo-holder {
+        	overflow: hidden;
+        	height: 230px;
+	}
 
+	.shows-table-header {
+                font-size: 14px;
+        }
+        .shows-table-data {
+                font-size: 10px;
+        }
+	.jumbotron p.bio-text {
+		font-size: 16px;
+	}
 }
 @media only screen and (max-width: 450px) {
 
@@ -223,5 +256,19 @@ body {
                 font-size: 11px;
         }
 
+	.photo-holder {
+	        height: 100px;
+	}
+
+	.shows-table-header {
+                font-size: 12px;
+        }
+        .shows-table-data {
+                font-size: 8px;
+        }
+
+	.jumbotron p.bio-text {
+		font-size: 14px;
+	}
 }
 
