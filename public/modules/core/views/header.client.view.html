@@ -29,7 +29,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li>
-				<i class="glyphicon glyphicon-fast-backward soundctrl" id="fast-backward" ng-click="changeSong('prev')"></i>
+				<i class="glyphicon glyphicon-fast-forward soundctrl" id="fast-forward" ng-click="changeSong('next')"></i>
 			</li>
 			<li>
 				<i class="glyphicon glyphicon-play soundctrl" id="play" ng-click="startMusic()"></i>
@@ -38,7 +38,11 @@
 				<i class="glyphicon glyphicon-stop soundctrl" id="pause" ng-click="stopMusic()"></i>
 			</li>
 			<li>
-				<i class="glyphicon glyphicon-fast-forward soundctrl" id="fast-forward" ng-click="changeSong('next')"></i>
+				<i class="glyphicon glyphicon-fast-backward soundctrl" id="fast-backward" ng-click="changeSong('prev')"></i>
+			</li>
+			<li id="sound-loading-container">
+				<span id="sound-loading">Loading...</span>
+				<span id="sound-title"></span>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">

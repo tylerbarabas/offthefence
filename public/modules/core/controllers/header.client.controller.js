@@ -11,7 +11,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		currentLoadedSnd = '',
 		sndPlaying = false;
 		
-		sndList.push('modules/core/snd/Howl_At_The_Moon.mp3');
+		sndList.push({path:'modules/core/snd/Howl_At_The_Moon.mp3',title:'Howl at the Moon'});
 
 		$scope.startMusic = function() {
 			
@@ -28,16 +28,16 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 					$scope.sndInstance.play();
 				}
 			} else {
-				
+				$('#sound-loading').show();
+				$('#sound-title').hide();
 				if (currentLoadedSnd != path) {
-
-                              	 	createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
-                                	createjs.Sound.alternateExtensions = ["mp3"];
-	  				createjs.Sound.on("fileload", createjs.proxy($scope.playSound));
-                                	createjs.Sound.registerSound(sndList[sndIndex], "sound");
-                        	} else {
-                                	$scope.playSound();
-                        	}
+						createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
+						createjs.Sound.alternateExtensions = ["mp3"];
+						createjs.Sound.on("fileload", createjs.proxy($scope.playSound));
+						createjs.Sound.registerSound(sndList[sndIndex].path, "sound");
+				} else {
+						$scope.playSound();
+				}
 
 			}
 			
@@ -45,17 +45,23 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		 };
 
 	
-                $scope.playSound = function() {
+		$scope.playSound = function() {
+
+			var musicIcon = '<i class="glyphicon glyphicon-music"></i>';
+
+			$('#sound-loading').hide();
+			$('#sound-title').html(musicIcon+'  '+sndList[sndIndex].title+'  '+musicIcon).show();
 			
 			if (!sndPlaying) {
 				$scope.sndInstance = createjs.Sound.play("sound");
-                        	$scope.sndInstance.volume = 1;
+				$scope.sndInstance.volume = 1;
 				sndPlaying = true;
 				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished));
 			}
                 };
 
 		$scope.sndFinished = function() {
+			$('#sound-title').hide();
 			sndPlaying = false;
 			$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
 		};

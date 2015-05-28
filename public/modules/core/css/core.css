@@ -156,7 +156,6 @@ body {
 }
 .shows-table-header{
 	font-size: 26px;
-	text-decoration: underline;
 }
 .shows-table-data {
 	font-size: 18px;
@@ -181,6 +180,15 @@ body {
 }
 #join {
 	margin: 10px;
+}
+#sound-loading, #sound-title {
+	display: none;
+	color: #fff;
+	margin-right: 20px;
+	font-size: 22px;
+}
+#sound-loading-container {
+	margin-top: 11px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
 
