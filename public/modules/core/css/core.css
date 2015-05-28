@@ -103,7 +103,7 @@ body {
 .photo-holder {
 	overflow: visible;
 	display: block;
-	height: 270px;
+	height: 370px;
 }
 .left-arrow {
 	position: fixed;
@@ -200,7 +200,7 @@ body {
 
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
 	.photo-holder {
-		height: 270px;
+		height: 290px;
 	}
 }
 
