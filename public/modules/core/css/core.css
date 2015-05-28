@@ -190,6 +190,9 @@ body {
 #sound-loading-container {
 	margin-top: 11px;
 }
+#next-show {
+	margin-top: 30px;
+}
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
 
 	#mailing-list.form-inline .form-control {
