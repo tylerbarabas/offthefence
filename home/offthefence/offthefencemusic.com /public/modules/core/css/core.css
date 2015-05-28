@@ -8,7 +8,7 @@ body {
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	font-family: edmunds;
-	background-color: #381F32;
+	background-color: #000000;
 }
 .navbar{
 		/*background-image: none;*/
@@ -98,12 +98,11 @@ body {
 	cursor: pointer;
 	margin-left: auto;
 	margin-right: auto;
-	border: 5px solid white;
+	min-height: 100%;
 }
 .photo-holder {
 	overflow: visible;
 	display: block;
-	height: 270px;
 }
 .left-arrow {
 	position: fixed;
@@ -197,13 +196,6 @@ body {
 #next-show {
 	margin-top: 30px;
 }
-
-@media only screen and (min-width: 1000px) and (max-width: 1200px) {
-	.photo-holder {
-		height: 270px;
-	}
-}
-
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
 
 	#mailing-list.form-inline .form-control {
@@ -222,9 +214,10 @@ body {
 		font-size: 16px;
 	}
 
-	.photo-holder {
-        	height: 270px;
-	}
+	/*.photo-holder {*/
+        	/*overflow: hidden;*/
+        	/*height: 270px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 20px;
@@ -250,9 +243,9 @@ body {
 		font-size: 13px;
 	}
 
-	.photo-holder {
-		height: 220px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 14px;
@@ -282,9 +275,9 @@ body {
 		font-size: 11px;
 	}
 
-	.photo-holder {
-		height: 170px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 12px;
@@ -319,9 +312,9 @@ body {
 		font-size: 9px;
 	}
 
-	.photo-holder {
-		height: 120px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 8px;

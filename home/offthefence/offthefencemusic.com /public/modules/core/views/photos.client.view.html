@@ -1,0 +1,39 @@
+<section data-ng-controller="HomeController" ng-init="findPhotos()">
+	<div class="jumbotron text-center">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Photos</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 text-left">
+				<span class="no-select page-arrow" ng-click="prevPage()" ng-show="photoPage > 1"><i class="glyphicon glyphicon-chevron-left no-select page-arrow"></i>Previous</span>
+			</div>
+			<div class="col-xs-4">
+
+			</div>
+			<div class="col-xs-4 text-right">
+				<span class="no-select page-arrow" ng-show="photoPage < pages" ng-click="nextPage()">Next<i class="glyphicon glyphicon-chevron-right"></i></span>
+			</div>
+		</div>
+		<div class="row">
+			<div ng-repeat="photo in filteredPhotos track by $index" class="col-xs-3 photo-holder">
+				<img ng-src="{{photo.filepath}}" class="photo-thumbnail img-responsive" ng-click="showPreview($index + ((photoPage-1)*numPerPage))" id="thumbnail{{$index}}">
+			</div>
+		</div>
+	</div>
+	<div id="photo-preview" class="photo-preview" ng-show="showPhotoPreview">
+		<img ng-src="{{filepath}}" id="display-photo" class="display-photo" ng-show="showPhotoPreview">
+	</div>
+	<div id="exit-icon" class="exit-icon" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
+		<i class="glyphicon glyphicon-remove"></i>
+	</div>
+	<div id="right-arrow" class="right-arrow" ng-show="showPhotoPreview">
+		<i class="glyphicon glyphicon-chevron-right no-select" ng-click="showPreview(photoIndex+1)"></i>
+	</div>
+	<div id="left-arrow" class="left-arrow" ng-show="showPhotoPreview">
+		<i class="glyphicon glyphicon-chevron-left no-select" ng-click="showPreview(photoIndex-1)"></i>
+	</div>
+	<div id="dim-overlay" class="dim-overlay" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
+	</div>
+</section>
