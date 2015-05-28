@@ -3,8 +3,8 @@
 	src: url('/lib/edmunds/edmunds.otf');
 }
 body {
-	/*background-image: url('../img/bg/otf_bg1.jpg');*/
-	background-image: url('../img/natephotos/PICT0035.jpg');
+	background-image: url('../img/bg/otf_bg1.jpg');
+	/*background-image: url('../img/natephotos/PICT0035.jpg');*/
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	font-family: edmunds;
@@ -65,11 +65,6 @@ body {
 .shows-table {
 	background-color: rgba(255,255,255,.3);
 }
-.thumbnail {;
-	cursor: pointer;
-	margin-left: auto;
-	margin-right: auto;
-}
 .photo-preview {
 	position: fixed;
 	top: 60px;
@@ -99,9 +94,15 @@ body {
 	z-index: 1;
 	background-color: rgba(0,0,0,.8);
 }
+.photo-thumbnail {;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 100%;
+}
 .photo-holder {
-	overflow: hidden;
-	height: 350px;
+	overflow: visible;
+	display: block;
 }
 .left-arrow {
 	position: fixed;
@@ -213,11 +214,11 @@ body {
 		font-size: 16px;
 	}
 
-	.photo-holder {
-        	overflow: hidden;
-        	height: 270px;
-	}
-	
+	/*.photo-holder {*/
+        	/*overflow: hidden;*/
+        	/*height: 270px;*/
+	/*}*/
+
 	.shows-table-header {
 		font-size: 20px;
 	}
@@ -242,9 +243,9 @@ body {
 		font-size: 13px;
 	}
 
-	.photo-holder {
-		height: 100px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 14px;
@@ -274,9 +275,9 @@ body {
 		font-size: 11px;
 	}
 
-	.photo-holder {
-		height: 100px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 12px;
@@ -311,9 +312,9 @@ body {
 		font-size: 9px;
 	}
 
-	.photo-holder {
-		height: 100px;
-	}
+	/*.photo-holder {*/
+		/*height: 100px;*/
+	/*}*/
 
 	.shows-table-header {
 		font-size: 8px;

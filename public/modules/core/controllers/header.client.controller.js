@@ -13,6 +13,9 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		
 		sndList.push({path:'modules/core/snd/Howl_At_The_Moon.mp3',title:'Howl at the Moon'});
 
+		//prevent the sound controls from being highlighted when double clicked
+		jQuery('.soundctrl').mousedown(function(e){ e.preventDefault(); });
+
 		$scope.startMusic = function() {
 			
 			$('#play').removeClass('glyphicon-play').addClass('glyphicon-pause');

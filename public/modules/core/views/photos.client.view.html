@@ -18,7 +18,7 @@
 		</div>
 		<div class="row">
 			<div ng-repeat="photo in filteredPhotos track by $index" class="col-xs-3 photo-holder">
-				<img ng-src="{{photo.filepath}}" class="thumbnail img-responsive" ng-click="showPreview($index + ((photoPage-1)*numPerPage))" id="thumbnail{{$index}}">
+				<img ng-src="{{photo.filepath}}" class="photo-thumbnail img-responsive" ng-click="showPreview($index + ((photoPage-1)*numPerPage))" id="thumbnail{{$index}}">
 			</div>
 		</div>
 	</div>
