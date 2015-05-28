@@ -6,7 +6,9 @@ body {
 	/*background-image: url('../img/bg/otf_bg1.jpg');*/
 	background-image: url('../img/natephotos/PICT0035.jpg');
 	background-size: 100% auto;
+	background-repeat: no-repeat;
 	font-family: edmunds;
+	background-color: #000000;
 }
 .navbar{
 		/*background-image: none;*/
@@ -202,14 +204,14 @@ body {
 
 	h2 {
 
-                font-size: 22px;
-                margin-top: 5px;
-                margin-bottom: 0px;
-        }
+		font-size: 22px;
+		margin-top: 5px;
+		margin-bottom: 0px;
+	}
 
-        .show-dates {
-                font-size: 16px;
-        }
+	.show-dates {
+		font-size: 16px;
+	}
 
 	.photo-holder {
         	overflow: hidden;
@@ -227,59 +229,100 @@ body {
 	}
 
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 550px) and (max-width: 768px) {
 
 	h2 {
-		
+
 		font-size: 18px;
 		margin-top: 5px;
 		margin-bottom: 0px;
 	}
 
 	.show-dates {
-		font-size: 12px;
+		font-size: 13px;
 	}
+
 	.photo-holder {
-        	overflow: hidden;
-        	height: 230px;
+		height: 100px;
 	}
 
 	.shows-table-header {
-                font-size: 14px;
-        }
-        .shows-table-data {
-                font-size: 10px;
-        }
+		font-size: 14px;
+	}
+	.shows-table-data {
+		font-size: 10px;
+	}
+
 	.jumbotron p.bio-text {
 		font-size: 16px;
 	}
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (min-width: 450px) and (max-width: 550px) {
 
-        h2 {
-        
-                font-size: 16px;
-                margin-top: 5px;
-                margin-bottom: 0px;
-        }
+	h2 {
 
-        .show-dates {
-                font-size: 11px;
-        }
+			font-size: 16px;
+			margin-top: 5px;
+			margin-bottom: 0px;
+	}
+
+	#next-show {
+		margin-top: 0px;
+	}
+
+	.show-dates {
+		font-size: 11px;
+	}
 
 	.photo-holder {
-	        height: 100px;
+		height: 100px;
 	}
 
 	.shows-table-header {
-                font-size: 12px;
-        }
-        .shows-table-data {
-                font-size: 8px;
-        }
+		font-size: 12px;
+	}
+	.shows-table-data {
+		font-size: 8px;
+	}
 
 	.jumbotron p.bio-text {
 		font-size: 14px;
 	}
 }
+@media only screen and (min-width: 250px) and (max-width: 450px) {
 
+	h2 {
+
+		font-size: 14px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+
+	#next-show {
+		margin-top: 0px;
+	}
+
+	.navbar-brand {
+		font-size: 16px;
+		padding: 15px 7px;
+	}
+
+	.show-dates {
+		font-size: 9px;
+	}
+
+	.photo-holder {
+		height: 100px;
+	}
+
+	.shows-table-header {
+		font-size: 8px;
+	}
+	.shows-table-data {
+		font-size: 5px;
+	}
+
+	.jumbotron p.bio-text {
+		font-size: 12px;
+	}
+}
