@@ -30,6 +30,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 				photo.$save(function(response) {
 					//$location.path('photos/' + response._id);
 					$scope.createPhotos = [];
+					$scope.photoRow.innerHTML = '';
 
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
@@ -108,6 +109,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 					var img = document.createElement('IMG'),
 						imgContainer = document.createElement('DIV'),
 						frag = document.createDocumentFragment();
+					$scope.photoRow = document.getElementById('photo-row');
 
 					imgContainer.className = 'col-xs-3 photo-holder';
 
@@ -117,7 +119,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 					imgContainer.appendChild(img);
 					frag.appendChild(imgContainer);
 
-					document.getElementById('photo-row').appendChild(frag);
+					$scope.photoRow.appendChild(frag);
 					$scope.createPhotos.push(img);
 
 
