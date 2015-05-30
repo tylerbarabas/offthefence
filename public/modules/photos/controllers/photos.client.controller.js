@@ -14,13 +14,17 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 			}
 
-			angular.forEach($scope.createPhotos,function(filepath,key){
+			angular.forEach($scope.createPhotos,function(elem,key){
+
+				console.log("inside the foreach...",elem,key);
 
 				// Create new Photo object
 				var photo = new Photos ({
-					filepath: filepath,
+					filepath: elem.src,
 					credit: $scope.credit,
-					where: $scope.where
+					where: $scope.where,
+					height: elem.naturalHeight,
+					width: elem.naturalWidth
 				});
 
 				photo.$save(function(response) {
@@ -101,7 +105,22 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 						filename = path.replace(/^.*[\\\/]/, ''),
 						relPath = '/modules/photos/img/' + filename;
 
-					$scope.createPhotos.push(relPath);
+					var img = document.createElement('IMG'),
+						imgContainer = document.createElement('DIV'),
+						frag = document.createDocumentFragment();
+
+					imgContainer.className = 'col-xs-3 photo-holder';
+
+					img.src = relPath;
+					img.className = 'img-responsive';
+
+					imgContainer.appendChild(img);
+					frag.appendChild(imgContainer);
+
+					document.getElementById('photo-row').appendChild(frag);
+					$scope.createPhotos.push(img);
+
+
 					$scope.error = '';
 				})
 				.error(function(err){

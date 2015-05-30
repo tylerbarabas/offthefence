@@ -29,6 +29,14 @@ var PhotoSchema = new Schema({
 	},
 	credit: {
 		type: String
+	},
+	height: {
+		type: Number,
+		default: 0
+	},
+	width: {
+		type: Number,
+		default: 0
 	}
 });
 
