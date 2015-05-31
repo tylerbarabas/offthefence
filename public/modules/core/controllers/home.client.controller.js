@@ -262,7 +262,20 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			if ($scope.photoPreviewShowing) {
 				$scope.showPreview($scope.photoIndex);
 			}
+
+			if ($location.path() == '/videos') $scope.resizeVideos();
 		});
+
+		$scope.resizeVideos = function() {
+			var videos = document.getElementsByClassName('band-video');
+			for (var i=0;i<videos.length;i++) {
+				var width = document.getElementById('video-jumbotron').offsetWidth*.8,
+					height = width * .6;
+
+				videos[i].setAttribute('width',width);
+				videos[i].setAttribute('height',height);
+			}
+		};
 
 	}
 ]);
