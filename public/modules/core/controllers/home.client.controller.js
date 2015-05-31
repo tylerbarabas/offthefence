@@ -130,12 +130,15 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 					}
 				}
 
-				if (typeof $scope.photoPages[$scope.currentPhotoPage+1] === 'undefined') {
-					$scope.photoPages[$scope.currentPhotoPage+1] = photoIndex;
-				}
-
 				frag.appendChild(row);
 				photosContainer.appendChild(frag);
+			}
+
+			$scope.onHighestPage = (photoIndex >= $scope.preloadImg.length);
+			console.log("onHighestPage", $scope.onHighestPage);
+
+			if (typeof $scope.photoPages[$scope.currentPhotoPage+1] === 'undefined') {
+				$scope.photoPages[$scope.currentPhotoPage+1] = photoIndex;
 			}
 		};
 
