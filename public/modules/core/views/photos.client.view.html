@@ -7,19 +7,16 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-4 text-left">
-				<span class="no-select page-arrow" ng-click="prevPage()" ng-show="photoPage > 1"><i class="glyphicon glyphicon-chevron-left no-select page-arrow"></i>Previous</span>
+				<span class="no-select page-arrow" ng-click="prevPage()" ng-show="currentPhotoPage > 0"><i class="glyphicon glyphicon-chevron-left no-select page-arrow"></i>Previous</span>
 			</div>
 			<div class="col-xs-4">
 
 			</div>
 			<div class="col-xs-4 text-right">
-				<span class="no-select page-arrow" ng-show="photoPage < pages" ng-click="nextPage()">Next<i class="glyphicon glyphicon-chevron-right"></i></span>
+				<span class="no-select page-arrow" ng-click="nextPage()" ng-show="!onHighestPage">Next<i class="glyphicon glyphicon-chevron-right"></i></span>
 			</div>
 		</div>
-		<div class="row">
-			<div ng-repeat="photo in filteredPhotos track by $index" class="col-xs-3 photo-holder">
-				<img ng-src="{{photo.filepath}}" class="photo-thumbnail img-responsive" ng-click="showPreview($index + ((photoPage-1)*numPerPage))" id="thumbnail{{$index}}">
-			</div>
+		<div id="photos-container">
 		</div>
 	</div>
 	<div id="photo-preview" class="photo-preview" ng-show="showPhotoPreview">

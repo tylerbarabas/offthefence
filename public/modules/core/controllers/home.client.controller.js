@@ -12,9 +12,9 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$scope.loginAllowed = false;
 
-		$scope.photoIndex = 0;
-		$scope.photoPage = 1;
-		$scope.numPerPage = 12;
+		$scope.photoPages = [0];
+		$scope.currentPhotoPage = 0;
+		$scope.onHighestPage = false;
 
 		$rootScope.imagesPreloaded = false;
 
@@ -66,21 +66,82 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			$scope.photos = Photos.query();
 			$scope.photos.$promise.then(function(photos){
 				if (photos.length > 0) {
-					$scope.pages = Math.ceil(photos.length/12);
-					//get number of pages
-					$scope.filteredPhotos = photos.slice(0,12);
-
-					var preload = [];
+					$scope.preloadImg = [];
 					//pre-load images
 					for (var i=0;i<photos.length;i++) {
-						preload[i] = new Image();
-						preload[i].src = photos[i].filepath;
+						$scope.preloadImg[i] = new Image();
+						$scope.preloadImg[i].src = photos[i].filepath;
+						$scope.preloadImg[i].className = 'img-responsive';
+						$scope.preloadImg[i].origHeight = photos[i].height;
+						$scope.preloadImg[i].origWidth = photos[i].width;
 					}
-
 				}
 
+				$scope.showPhotoPage(0);
 
 			});
+		};
+
+		$scope.showPhotoPage = function (page) {
+
+			console.log('showPhotoPage');
+
+			$scope.currentPhotoPage = page;
+
+			var photoIndex = $scope.photoPages[page],
+				photosContainer = document.getElementById('photos-container'),
+				frag = document.createDocumentFragment();
+
+			photosContainer.innerHTML = '';
+
+			for (var rowsUsed = 0; rowsUsed < 3; rowsUsed++) {
+
+				console.log("FOR",rowsUsed);
+
+				var row = document.createElement('DIV'),
+					colsUsed = 0,
+					colValue;
+
+				row.className = "row";
+
+				while (colsUsed < 12) {
+					console.log('while colsUsed < 12', colsUsed);
+
+					var imageContainer = document.createElement("DIV");
+
+					if (photoIndex >= $scope.preloadImg.length) {
+						$scope.onHighestPage = true;
+					}
+
+					//portrait
+					if ($scope.preloadImg[photoIndex].origHeight > $scope.preloadImg[photoIndex].origWidth) {
+						imageContainer.className = 'col-xs-3 photo-holder';
+						colValue = 3;
+					//landscape
+					} else {
+						imageContainer.className = 'col-xs-6 photo-holder';
+						colValue = 6;
+					}
+
+					if (colsUsed+colValue > 12) {
+						$scope.preloadImg.push($scope.preloadImg[photoIndex]);
+						$scope.preloadImg.splice(photoIndex,1);
+					} else {
+						imageContainer.appendChild($scope.preloadImg[photoIndex]);
+						row.appendChild(imageContainer);
+
+						colsUsed += colValue;
+						photoIndex++;
+					}
+				}
+
+				if (typeof $scope.photoPages[$scope.currentPhotoPage+1] === 'undefined') {
+					$scope.photoPages[$scope.currentPhotoPage+1] = photoIndex;
+				}
+
+				frag.appendChild(row);
+				photosContainer.appendChild(frag);
+			}
 		};
 
 		$scope.showPreview = function(index) {
@@ -146,20 +207,18 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		});
 
 		$scope.prevPage = function () {
-			if ($scope.photoPage > 1) $scope.photoPage--;
+			if ($scope.currentPhotoPage > 0) {
+				$scope.currentPhotoPage--;
+				$scope.showPhotoPage($scope.currentPhotoPage);
+			}
 		};
 
 		$scope.nextPage = function () {
-			if ($scope.photoPage < $scope.pages) $scope.photoPage++;
+			if (!$scope.onHighestPage) {
+				$scope.currentPhotoPage++;
+				$scope.showPhotoPage($scope.currentPhotoPage);
+			}
 		};
 
-		$scope.$watch('photoPage + numPerPage', function() {
-			var begin = (($scope.photoPage - 1) * $scope.numPerPage),
-				end = begin + $scope.numPerPage;
-
-			$scope.filteredPhotos = $scope.photos.slice(begin, end);
-		});
-
-		$scope.findPhotos();
 	}
 ]);
