@@ -84,8 +84,6 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$scope.showPhotoPage = function (page) {
 
-			console.log('showPhotoPage');
-
 			$scope.currentPhotoPage = page;
 
 			var photoIndex = $scope.photoPages[page],
@@ -96,8 +94,6 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 			for (var rowsUsed = 0; rowsUsed < 3; rowsUsed++) {
 
-				console.log("FOR",rowsUsed);
-
 				var row = document.createElement('DIV'),
 					colsUsed = 0,
 					colValue;
@@ -105,7 +101,6 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				row.className = "row";
 
 				while (colsUsed < 12) {
-					console.log('while colsUsed < 12', colsUsed);
 
 					var imageContainer = document.createElement("DIV");
 
