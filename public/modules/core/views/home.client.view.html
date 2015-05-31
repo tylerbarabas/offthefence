@@ -22,11 +22,11 @@
 			</div>
 		</div>
 		<br>
-		<div class="row">
+		<div class="row" ng-show="!canDownload">
 			<p class="lead">
-				<h2>Join our mailing list!</h2>
+				<h2>Get the new album by joining our mailing list!</h2>
 				<form class="form-inline" id="mailing-list" ng-submit="saveToMailingList()">
-<div class="col-xs-12">
+					<div class="col-xs-12">
 					<label for="email"></label>
 					<input class="form-control" type="email" id="email" placeholder="Email" ng-model="email" required>
 					<label for="first_name"></label>
@@ -36,16 +36,19 @@
 					<label for="zip"></label>
 					<input class="form-control" type="text" id="zip" placeholder="Zip code" ng-model="zip" required>
 					<button type="submit" id="join" class="btn btn-primary">Join!</button>
-</div>
+					</div>
 					<div data-ng-show="error" class="text-danger">
 						<strong data-ng-bind="error"></strong>
 					</div>
 				</form>
 			</p>
 		</div>
+		<div class="row" ng-show="canDownload">
+			<h2>Click <a href="modules/core/downloads/offthefence.zip">here</a> to download the new album!</h2>
+		</div>
 	</div>
 	<div class="jumbotron text-center" ng-show="thankYou">
 		<h1>Thank you!</h1>
-		<h4>You'll be the first to hear about any upcoming events in your area.</h4>
+		<h3>We'll keep you posted about upcoming shows in your area.</h3>
 	</div>
 </section>

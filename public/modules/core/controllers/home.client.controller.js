@@ -19,7 +19,10 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$rootScope.imagesPreloaded = false;
 
+		$scope.canDownload = false;
+
 		$scope.sayThankYou = function() {
+
 			$scope.mainPage = false;
 
 			$timeout(function(){
@@ -27,10 +30,11 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			}, 700);
 			$timeout(function(){
 				$scope.thankYou = false;
-			}, 5800);
+			}, 4800);
 			$timeout(function(){
 				$scope.mainPage = true;
-			}, 6500);
+				$scope.canDownload = true;
+			}, 5500);
 		};
 
 		$scope.saveToMailingList = function() {

@@ -8,10 +8,17 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		var sndList = [],
 		sndIndex = 0,
-		currentLoadedSnd = '',
+		currentLoadedSound = '',
 		sndPlaying = false;
 		
-		sndList.push({path:'modules/core/snd/Howl_At_The_Moon.mp3',title:'Howl at the Moon'});
+		sndList.push({src:'modules/core/snd/howlatthemoon.mp3',id:'Howl at the Moon'});
+		//sndList.push({src:'modules/core/snd/beer.mp3',id:'Beer'});
+		//sndList.push({src:'modules/core/snd/longlongtime.mp3',id:'Long Long Time'});
+		//sndList.push({src:'modules/core/snd/hypnotized.mp3',id:'Hypnotized'});
+
+		createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
+		createjs.Sound.alternateExtensions = ["mp3"];
+		createjs.Sound.registerSounds(sndList);
 
 		//prevent the sound controls from being highlighted when double clicked
 		jQuery('.soundctrl').mousedown(function(e){ e.preventDefault(); });
@@ -20,32 +27,34 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			
 			$('#play').removeClass('glyphicon-play').addClass('glyphicon-pause');
 	
-			var path = sndList[sndIndex];			
+			var song = sndList[sndIndex];
 			
 			if (sndPlaying) {
+				console.log('SOUND ALREADY PLAYING...');
 				if (!$scope.sndInstance.getPaused()) {
 					$scope.pauseMusic();
 					$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
-					return;
 				} else {
 					$scope.sndInstance.play();
 				}
 			} else {
 				$('#sound-loading').show();
 				$('#sound-title').hide();
-				if (currentLoadedSnd != path) {
-						createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
-						createjs.Sound.alternateExtensions = ["mp3"];
-						createjs.Sound.on("fileload", createjs.proxy($scope.playSound));
-						createjs.Sound.registerSound(sndList[sndIndex].path, "sound");
-				} else {
-						$scope.playSound();
-				}
+
+				$scope.playSound();
+
 
 			}
-			
-			currentLoadedSnd = path;
-		 };
+		};
+
+		$scope.resetSoundJS = function () {
+			createjs.Sound.activePlugin = null;
+			createjs.Sound.pluginsRegistered = false;
+			createjs.Sound.idHash = {};
+			createjs.Sound.preloadHash = {};
+			// now you must register the plugins again, for example with
+			createjs.Sound.initializeDefaultPlugins();
+		};
 
 	
 		$scope.playSound = function() {
@@ -53,10 +62,11 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			var musicIcon = '<i class="glyphicon glyphicon-music"></i>';
 
 			$('#sound-loading').hide();
-			$('#sound-title').html(musicIcon+'  '+sndList[sndIndex].title+'  '+musicIcon).show();
+			$('#sound-title').html(musicIcon+'  '+sndList[sndIndex].id+'  '+musicIcon).show();
 			
 			if (!sndPlaying) {
-				$scope.sndInstance = createjs.Sound.play("sound");
+				console.log("play a song...",sndList[sndIndex].src);
+				$scope.sndInstance = createjs.Sound.play(sndList[sndIndex].src);
 				$scope.sndInstance.volume = 1;
 				sndPlaying = true;
 				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished));
@@ -87,7 +97,9 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			} else if (sndIndex < 0) {
 				sndIndex = sndList.length - 1;
 			}
-		
+
+			console.log('sndIndex',sndIndex);
+
 			if (sndPlaying) {
 				$scope.stopMusic();
 				$scope.startMusic();
