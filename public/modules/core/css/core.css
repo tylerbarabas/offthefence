@@ -104,6 +104,7 @@ body {
 	overflow: visible;
 	display: block;
 	height: 370px;
+	cursor: pointer;
 }
 .left-arrow {
 	position: fixed;
@@ -331,7 +332,7 @@ body {
 		font-size: 12px;
 	}
 	.shows-table-data {
-		font-size: 9px;
+		font-size: 7px;
 	}
 
 	.jumbotron p.bio-text {
