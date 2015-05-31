@@ -19,18 +19,20 @@
 		<div id="photos-container">
 		</div>
 	</div>
-	<div id="photo-preview" class="photo-preview" ng-show="showPhotoPreview">
-		<img ng-src="{{filepath}}" id="display-photo" class="display-photo" ng-show="showPhotoPreview">
-	</div>
-	<div id="exit-icon" class="exit-icon" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
-		<i class="glyphicon glyphicon-remove"></i>
-	</div>
-	<div id="right-arrow" class="right-arrow" ng-show="showPhotoPreview">
-		<i class="glyphicon glyphicon-chevron-right no-select" ng-click="showPreview(photoIndex+1)"></i>
-	</div>
-	<div id="left-arrow" class="left-arrow" ng-show="showPhotoPreview">
-		<i class="glyphicon glyphicon-chevron-left no-select" ng-click="showPreview(photoIndex-1)"></i>
-	</div>
-	<div id="dim-overlay" class="dim-overlay" ng-show="showPhotoPreview" ng-click="showPhotoPreview = false">
+	<div id="preview-container">
+		<div id="photo-preview" class="photo-preview">
+			<img ng-src="{{filepath}}" id="display-photo" class="display-photo">
+		</div>
+		<div id="exit-icon" class="exit-icon" ng-click="hidePhotoPreview()">
+			<i class="glyphicon glyphicon-remove"></i>
+		</div>
+		<div id="right-arrow" class="right-arrow">
+			<i class="glyphicon glyphicon-chevron-right no-select" ng-click="showPreview(photoIndex+1)"></i>
+		</div>
+		<div id="left-arrow" class="left-arrow">
+			<i class="glyphicon glyphicon-chevron-left no-select" ng-click="showPreview(photoIndex-1)"></i>
+		</div>
+		<div id="dim-overlay" class="dim-overlay" ng-click="hidePhotoPreview()">
+		</div>
 	</div>
 </section>

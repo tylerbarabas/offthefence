@@ -8,7 +8,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 		$scope.thankYou = false;
 		$scope.mainPage = true;
-		$scope.showPhotoPreview = false;
+		$scope.photoPreviewShowing = false;
 
 		$scope.loginAllowed = false;
 
@@ -122,6 +122,10 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 						$scope.preloadImg.push($scope.preloadImg[photoIndex]);
 						$scope.preloadImg.splice(photoIndex,1);
 					} else {
+
+						$scope.preloadImg[photoIndex].setAttribute('data-index',photoIndex);
+						$scope.preloadImg[photoIndex].addEventListener('click',$scope.showPreview);
+
 						imageContainer.appendChild($scope.preloadImg[photoIndex]);
 						row.appendChild(imageContainer);
 
@@ -142,17 +146,25 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			}
 		};
 
-		$scope.showPreview = function(index) {
+		$scope.showPreview = function(e) {
 
-			if (typeof $scope.photos[index] == 'undefined' && index > 0)
+			$scope.photoPreviewShowing = true;
+			
+			var index;
+			if (typeof e.target === 'undefined') {
+				index = e;
+			} else {
+				index = e.target.dataset.index;
+			}
+
+			if (typeof $scope.preloadImg[index] == 'undefined' && index > 0)
 				index = 0;
-			else if (typeof $scope.photos[index] == 'undefined' && index < 0)
-				index = $scope.photos.length - 1;
+			else if (typeof $scope.preloadImg[index] == 'undefined' && index < 0)
+				index = $scope.preloadImg.length - 1;
 
 			$scope.photoIndex = index;
-
-			$scope.showPhotoPreview = true;
-			$scope.filepath = $scope.photos[index].filepath;
+			
+			$scope.filepath = $scope.preloadImg[index].src;
 
 			var photoPreview = document.getElementById('photo-preview');
 
@@ -175,7 +187,13 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			displayPhoto.style.height = photoHeight+'px';
 			displayPhoto.src = $scope.filepath;
 
+			$('#preview-container').show();
 
+		};
+
+		$scope.hidePhotoPreview = function() {
+			$scope.photoPreviewShowing = false;
+			$('#preview-container').hide();
 		};
 
 		$rootScope.loginAllowed = false;
@@ -195,11 +213,12 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				});
 			}
 
-			if (e.keyCode == 37 && $scope.showPhotoPreview) {
+			if (e.keyCode == 37 && $scope.photoPreviewShowing) {
+				if ($scope.photoIndex == 0) $scope.photoIndex = $scope.preloadImg.length;
 				$scope.showPreview($scope.photoIndex - 1);
 			}
 
-			if (e.keyCode == 39 && $scope.showPhotoPreview) {
+			if (e.keyCode == 39 && $scope.photoPreviewShowing) {
 				$scope.showPreview($scope.photoIndex + 1);
 			}
 		});
