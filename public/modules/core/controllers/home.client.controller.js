@@ -15,6 +15,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		$scope.photoPages = [0];
 		$scope.currentPhotoPage = 0;
 		$scope.onHighestPage = false;
+		$scope.photoIndex = 0;
 
 		$rootScope.imagesPreloaded = false;
 
@@ -139,7 +140,6 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 			}
 
 			$scope.onHighestPage = (photoIndex >= $scope.preloadImg.length);
-			console.log("onHighestPage", $scope.onHighestPage);
 
 			if (typeof $scope.photoPages[$scope.currentPhotoPage+1] === 'undefined') {
 				$scope.photoPages[$scope.currentPhotoPage+1] = photoIndex;
@@ -163,16 +163,30 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				index = $scope.preloadImg.length - 1;
 
 			$scope.photoIndex = index;
-			
 			$scope.filepath = $scope.preloadImg[index].src;
 
-			var photoPreview = document.getElementById('photo-preview');
+			var photoPreview = document.getElementById('photo-preview'),
+				photoSize,
+				displayPhoto;
 
-			//I know I want the height of the photo to be 80%
-			var photoHeight = $window.innerHeight*.8;
+			photoPreview.style.visibility = "hidden";
 
-			//Go ahead and set the height of the photo
-			var displayPhoto = document.getElementById('display-photo');
+			//portrait
+			if ($scope.preloadImg[index].origHeight > $scope.preloadImg[index].origWidth) {
+				photoSize = $window.innerHeight*.7;
+
+				displayPhoto = document.getElementById('display-photo');
+				displayPhoto.style.height = photoSize+'px';
+				displayPhoto.style.width = "auto";
+
+			//landscape
+			} else {
+				photoSize = $window.innerWidth*.6;
+
+				displayPhoto = document.getElementById('display-photo');
+				displayPhoto.style.width = photoSize+'px';
+				displayPhoto.style.height = "auto";
+			}
 
 			displayPhoto.addEventListener('load',function(){
 				//calculate the center position
@@ -182,18 +196,25 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 				//center the photo
 				photoPreview.style.left = centerPhoto+'px';
+
+				deadCenter = $window.innerHeight/2;
+				halfOffset = displayPhoto.offsetHeight/2;
+				centerPhoto = deadCenter - halfOffset;
+
+				//center the photo
+				photoPreview.style.top = centerPhoto+'px';
+				photoPreview.style.visibility = "visible";
 			});
 
-			displayPhoto.style.height = photoHeight+'px';
 			displayPhoto.src = $scope.filepath;
 
-			$('#preview-container').show();
+			$('#preview-container').show(100);
 
 		};
 
 		$scope.hidePhotoPreview = function() {
 			$scope.photoPreviewShowing = false;
-			$('#preview-container').hide();
+			$('#preview-container').hide(100);
 		};
 
 		$rootScope.loginAllowed = false;
@@ -236,6 +257,12 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				$scope.showPhotoPage($scope.currentPhotoPage);
 			}
 		};
+
+		$(window).resize(function(){
+			if ($scope.photoPreviewShowing) {
+				$scope.showPreview($scope.photoIndex);
+			}
+		});
 
 	}
 ]);
