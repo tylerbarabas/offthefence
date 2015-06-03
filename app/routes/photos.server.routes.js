@@ -14,8 +14,8 @@ module.exports = function(app) {
 
 	app.route('/photos/:photoId')
 		.get(photos.read)
-		.put(users.requiresLogin, photos.hasAuthorization, photos.update)
-		.delete(users.requiresLogin, photos.hasAuthorization, photos.delete);
+		.put(users.requiresLogin, photos.update)
+		.delete(users.requiresLogin, photos.delete);
 
 	// Finish by binding the Photo middleware
 	app.param('photoId', photos.photoByID);

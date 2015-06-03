@@ -5,12 +5,17 @@
                 <h1>Edit Photo</h1>
             </div>
             <div class="col-md-12">
+                <img ng-src="{{photo.filepath}}" class="preview-big">
                 <form class="form-horizontal" data-ng-submit="update()" novalidate>
                     <fieldset>
                         <div class="form-group">
-                            <label class="control-label" for="name">Name</label>
+                            <label class="control-label" for="where">Where was this taken?</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="photo.name" id="name" class="form-control" placeholder="Name" required>
+                                <input type="text" data-ng-model="photo.where" id="where" class="form-control" placeholder="Where?" required>
+                            </div>
+                            <label class="control-label" for="credit">Credit to:</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="photo.credit" id="credit" class="form-control" placeholder="Credit to" required>
                             </div>
                         </div>
                         <div class="form-group">

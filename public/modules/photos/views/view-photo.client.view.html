@@ -2,10 +2,11 @@
 	<div class="jumbotron text-center">
 		<div class="row">
 			<div class="page-header">
-				<h1 data-ng-bind="photo.name"></h1>
+				<img ng-src="{{photo.filepath}}" class="preview-big">
+				<h3>Taken by {{photo.credit}} in {{photo.where}}</h3>
 			</div>
 			<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == photo.user._id))">
-				<a class="btn btn-primary" href="/#!/photos/{{photo._id}}/edit">
+				<a class="btn btn-primary" href="/#!/admin/photos/{{photo._id}}/edit">
 					<i class="glyphicon glyphicon-edit"></i>
 				</a>
 				<a class="btn btn-primary" data-ng-click="remove();">

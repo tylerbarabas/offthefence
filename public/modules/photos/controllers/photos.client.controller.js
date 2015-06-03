@@ -21,8 +21,6 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 			angular.forEach($scope.createPhotos,function(elem,key){
 
-				console.log("inside the foreach...",elem,key);
-
 				// Create new Photo object
 				var photo = new Photos ({
 					filepath: elem.src,
@@ -33,7 +31,6 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 				});
 
 				photo.$save(function(response) {
-					//$location.path('photos/' + response._id);
 					$scope.createPhotos = [];
 					$scope.photoRow.innerHTML = '';
 
@@ -46,17 +43,23 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 		// Remove existing Photo
 		$scope.remove = function(photo) {
+
+			var confirm = window.confirm("Are you sure you want to delete this?");
+
+			if (!confirm) return;
+
 			if ( photo ) { 
 				photo.$remove();
 
 				for (var i in $scope.photos) {
 					if ($scope.photos [i] === photo) {
 						$scope.photos.splice(i, 1);
+						$scope.preloadImg.splice(i,1);
 					}
 				}
 			} else {
 				$scope.photo.$remove(function() {
-					$location.path('photos');
+					$location.path('admin/photos');
 				});
 			}
 		};
@@ -66,7 +69,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 			var photo = $scope.photo;
 
 			photo.$update(function() {
-				$location.path('photos/' + photo._id);
+				$location.path('admin/photos/' + photo._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -85,6 +88,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 						$scope.preloadImg[i].className = 'img-responsive';
 						$scope.preloadImg[i].origHeight = photos[i].height;
 						$scope.preloadImg[i].origWidth = photos[i].width;
+						$scope.preloadImg[i].id = photos[i]._id
 					}
 				}
 
@@ -158,6 +162,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 		$scope.showPhotoPage = function (page) {
 
 			$scope.currentPhotoPage = page;
+			var stopLooping = false;
 
 			var photoIndex = $scope.photoPages[page],
 				photosContainer = document.getElementById('photos-container'),
@@ -167,18 +172,24 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 
 			for (var rowsUsed = 0; rowsUsed < 3; rowsUsed++) {
 
+				if (stopLooping) return;
+
 				var row = document.createElement('DIV'),
 					colsUsed = 0,
 					colValue;
 
 				row.className = "row";
 
-				while (colsUsed < 12) {
+				var oi = 0;
+				while (colsUsed < 12 && !stopLooping) {
+					oi++;
 
-					var imageContainer = document.createElement("DIV");
+					var imageContainer = document.createElement("DIV"),
+						a = document.createElement("A");
 
-					if (photoIndex >= $scope.preloadImg.length) {
+					if (photoIndex >= $scope.preloadImg.length-1) {
 						$scope.onHighestPage = true;
+						stopLooping = true;
 					}
 
 					//portrait
@@ -191,7 +202,7 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 						colValue = 6;
 					}
 
-					if (colsUsed+colValue > 12) {
+					if (colsUsed+colValue > 12 && oi < 12) {
 						$scope.preloadImg.push($scope.preloadImg[photoIndex]);
 						$scope.preloadImg.splice(photoIndex,1);
 					} else {
@@ -199,8 +210,12 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 						$scope.preloadImg[photoIndex].setAttribute('data-index',photoIndex);
 						$scope.preloadImg[photoIndex].addEventListener('click',$scope.showPreview);
 
+						a.href = '#!/admin/photos/'+$scope.preloadImg[photoIndex].id;
+
+
 						imageContainer.appendChild($scope.preloadImg[photoIndex]);
-						row.appendChild(imageContainer);
+						a.appendChild(imageContainer);
+						row.appendChild(a);
 
 						colsUsed += colValue;
 						photoIndex++;

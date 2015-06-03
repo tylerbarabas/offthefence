@@ -90,6 +90,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		$scope.showPhotoPage = function (page) {
 
 			$scope.currentPhotoPage = page;
+			var stopLooping = false;
 
 			var photoIndex = $scope.photoPages[page],
 				photosContainer = document.getElementById('photos-container'),
@@ -99,18 +100,23 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 
 			for (var rowsUsed = 0; rowsUsed < 3; rowsUsed++) {
 
+				if (stopLooping) return;
+
 				var row = document.createElement('DIV'),
 					colsUsed = 0,
 					colValue;
 
 				row.className = "row";
 
-				while (colsUsed < 12) {
+				var oi = 0;
+				while (colsUsed < 12 && !stopLooping) {
+					oi++;
 
 					var imageContainer = document.createElement("DIV");
 
-					if (photoIndex >= $scope.preloadImg.length) {
+					if (photoIndex >= $scope.preloadImg.length-1) {
 						$scope.onHighestPage = true;
+						stopLooping = true;
 					}
 
 					//portrait
@@ -123,7 +129,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 						colValue = 6;
 					}
 
-					if (colsUsed+colValue > 12) {
+					if (colsUsed+colValue > 12 && oi < 12) {
 						$scope.preloadImg.push($scope.preloadImg[photoIndex]);
 						$scope.preloadImg.splice(photoIndex,1);
 					} else {

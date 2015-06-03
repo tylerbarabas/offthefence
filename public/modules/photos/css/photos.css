@@ -17,6 +17,9 @@
 .preview-img {
     height: 155px;
 }
+.preview-big {
+    height: 300px;
+}
 .photo-holder {
     margin-top: 10px;
     margin-bottom: 10px;
