@@ -79,6 +79,8 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 						$scope.preloadImg[i].className = 'img-responsive';
 						$scope.preloadImg[i].origHeight = photos[i].height;
 						$scope.preloadImg[i].origWidth = photos[i].width;
+						$scope.preloadImg[i].credit = photos[i].credit;
+						$scope.preloadImg[i].where = photos[i].where;
 					}
 				}
 
@@ -215,6 +217,9 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				photoPreview.style.top = centerPhoto+'px';
 				photoPreview.style.visibility = "visible";
 			});
+
+			var photoCredit = document.getElementById('photo-credit');
+			photoCredit.innerHTML = $scope.preloadImg[index].credit+"<br>"+$scope.preloadImg[index].where+".";
 
 			displayPhoto.src = $scope.filepath;
 

@@ -206,7 +206,14 @@ body {
 	font-family: Arial, Helvetica, sans-serif; 
 }
 #main-menu .navbar-brand {
-	color: #FDBF50;
+	color: #FC9176;
+}
+#preview-container #photo-credit {
+	position: fixed;
+	z-index: 9999;
+	right: 10px;
+	bottom: 0;
+	color: white;
 }
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
 	.photo-holder {
