@@ -28,6 +28,11 @@ angular.module('email-lists').controller('EmailListsController', ['$scope', '$st
 
 		// Remove existing Email list
 		$scope.remove = function(emailList) {
+			
+			var confirm = window.confirm('Are you sure you want to delete this?');
+
+			if (!confirm) return;
+
 			if ( emailList ) { 
 				emailList.$remove();
 

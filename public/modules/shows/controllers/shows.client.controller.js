@@ -39,6 +39,11 @@ angular.module('shows').controller('ShowsController', ['$scope', '$stateParams',
 
 		// Remove existing Show
 		$scope.remove = function(show) {
+
+			var confirm = window.confirm("Are you sure you want to delete this?");
+
+			if (!confirm) return;
+
 			if ( show ) { 
 				show.$remove();
 
