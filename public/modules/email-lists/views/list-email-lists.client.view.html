@@ -2,17 +2,14 @@
     <div class="jumbotron text-center">
         <div class="row">
             <div class="page-header">
-                <h1>Email lists</h1>
+                <h1>Email list</h1>
+		<h3>Total: {{emailLists.length}}</h3>
             </div>
             <div class="list-group">
-                <a data-ng-repeat="emailList in emailLists" data-ng-href="#!/email-lists/{{emailList._id}}" class="list-group-item">
-                    <small class="list-group-item-text">
-                        Posted on
-                        <span data-ng-bind="emailList.created | date:'medium'"></span>
-                        by
-                        <span data-ng-bind="emailList.user.displayName"></span>
-                    </small>
-                    <h4 class="list-group-item-heading" data-ng-bind="emailList.name"></h4>
+                <a id="email-list" data-ng-repeat="emailList in emailLists" data-ng-href="#!/admin/email-lists/{{emailList._id}}" class="list-group-item">
+
+		    <span data-ng-bind="emailList.created | date:'medium'"></span>
+                    <h4 class="list-group-item-heading">{{emailList.firstName}} {{emailList.lastName}} - {{emailList.email}}</h4>
                 </a>
             </div>
             <div class="alert alert-warning text-center" data-ng-hide="!emailLists.$resolved || emailLists.length">

@@ -11,8 +11,8 @@ module.exports = function(app) {
 
 	app.route('/email-lists/:emailListId')
 		.get(emailLists.read)
-		.put(users.requiresLogin, emailLists.hasAuthorization, emailLists.update)
-		.delete(users.requiresLogin, emailLists.hasAuthorization, emailLists.delete);
+		.put(users.requiresLogin, emailLists.update)
+		.delete(users.requiresLogin, emailLists.delete);
 
 	// Finish by binding the Email list middleware
 	app.param('emailListId', emailLists.emailListByID);

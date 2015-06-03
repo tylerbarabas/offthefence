@@ -9,12 +9,15 @@ angular.module('email-lists').controller('EmailListsController', ['$scope', '$st
 		$scope.create = function() {
 			// Create new Email list object
 			var emailList = new EmailLists ({
-				name: this.name
+				firstName: this.firstName,
+				lastName: this.lastName,
+				email: this.email,
+				zip: this.zip
 			});
 
 			// Redirect after save
 			emailList.$save(function(response) {
-				$location.path('email-lists/' + response._id);
+				$location.path('admin/email-lists/' + response._id);
 
 				// Clear form fields
 				$scope.name = '';
@@ -35,7 +38,7 @@ angular.module('email-lists').controller('EmailListsController', ['$scope', '$st
 				}
 			} else {
 				$scope.emailList.$remove(function() {
-					$location.path('email-lists');
+					$location.path('admin/email-lists');
 				});
 			}
 		};
@@ -45,7 +48,7 @@ angular.module('email-lists').controller('EmailListsController', ['$scope', '$st
 			var emailList = $scope.emailList;
 
 			emailList.$update(function() {
-				$location.path('email-lists/' + emailList._id);
+				$location.path('admin/email-lists/' + emailList._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

@@ -6,19 +6,19 @@ angular.module('email-lists').config(['$stateProvider',
 		// Email lists state routing
 		$stateProvider.
 		state('listEmailLists', {
-			url: '/email-lists',
+			url: '/admin/email-lists',
 			templateUrl: 'modules/email-lists/views/list-email-lists.client.view.html'
 		}).
 		state('createEmailList', {
-			url: '/email-lists/create',
+			url: '/admin/email-lists/create',
 			templateUrl: 'modules/email-lists/views/create-email-list.client.view.html'
 		}).
 		state('viewEmailList', {
-			url: '/email-lists/:emailListId',
+			url: '/admin/email-lists/:emailListId',
 			templateUrl: 'modules/email-lists/views/view-email-list.client.view.html'
 		}).
 		state('editEmailList', {
-			url: '/email-lists/:emailListId/edit',
+			url: '/admin/email-lists/:emailListId/edit',
 			templateUrl: 'modules/email-lists/views/edit-email-list.client.view.html'
 		});
 	}

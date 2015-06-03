@@ -27,7 +27,7 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+		<ul id="sound_player"  class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li>
 				<i class="glyphicon glyphicon-fast-forward soundctrl" id="fast-forward" ng-click="changeSong('next')"></i>
 			</li>

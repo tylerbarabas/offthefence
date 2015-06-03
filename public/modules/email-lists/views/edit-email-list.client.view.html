@@ -8,9 +8,21 @@
                 <form class="form-horizontal" data-ng-submit="update()" novalidate>
                     <fieldset>
                         <div class="form-group">
-                            <label class="control-label" for="name">Name</label>
+                            <label class="control-label" for="first-name">First name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="emailList.name" id="name" class="form-control" placeholder="Name" required>
+                                <input type="text" data-ng-model="emailList.firstName" id="first-name" class="form-control" placeholder="First name" required>
+                            </div>
+			   <label class="control-label" for="last-name">Last name</label>
+			   <div class="controls">
+                                <input type="text" data-ng-model="emailList.lastName" id="last-name" class="form-control" placeholder="Last name" required>
+                            </div>
+			    <label class="control-label" for="email">Email</label>
+			    <div class="controls">
+                                <input type="text" data-ng-model="emailList.email" id="email" class="form-control" placeholder="Email" required>
+                            </div>
+			    <label class="control-label" for="zip">Zip</label>
+			    <div class="controls">
+                                <input type="text" data-ng-model="emailList.zip" id="zip" class="form-control" placeholder="Zip code" required>
                             </div>
                         </div>
                         <div class="form-group">

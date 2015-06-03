@@ -179,7 +179,7 @@ body {
 .form-control, .btn, .shows-table-header, .shows-table-data, .bio-text {
 	font-family: Arial, Helvetica, sans-serif;
 }
-.nav li {
+#sound_player.nav li {
 	float: right;
 	display: inline-block;
 }
@@ -202,7 +202,9 @@ body {
 #preview-container {
 	display: none;
 }
-
+#email-list {
+	font-family: Arial, Helvetica, sans-serif; 
+}
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
 	.photo-holder {
 		height: 290px;
