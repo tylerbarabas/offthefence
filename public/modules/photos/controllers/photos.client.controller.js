@@ -5,6 +5,11 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 	function($scope, $upload, $stateParams, $location, Authentication, Photos) {
 		$scope.authentication = Authentication;
 
+		$scope.photoPages = [0];
+		$scope.currentPhotoPage = 0;
+		$scope.onHighestPage = false;
+		$scope.photoIndex = 0;
+
 		// Create new Photo
 		$scope.create = function() {
 
@@ -70,6 +75,22 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 		// Find a list of Photos
 		$scope.find = function() {
 			$scope.photos = Photos.query();
+			$scope.photos.$promise.then(function(photos){
+				if (photos.length > 0) {
+					$scope.preloadImg = [];
+					//pre-load images
+					for (var i=0;i<photos.length;i++) {
+						$scope.preloadImg[i] = new Image();
+						$scope.preloadImg[i].src = photos[i].filepath;
+						$scope.preloadImg[i].className = 'img-responsive';
+						$scope.preloadImg[i].origHeight = photos[i].height;
+						$scope.preloadImg[i].origWidth = photos[i].width;
+					}
+				}
+
+				$scope.showPhotoPage(0);
+
+			});
 		};
 
 		// Find existing Photo
@@ -131,6 +152,82 @@ angular.module('photos').controller('PhotosController', ['$scope', '$upload', '$
 					//.then(success, error, progress);
 					// access or attach event listeners to the underlying XMLHttpRequest.
 					//.xhr(function(xhr){xhr.upload.addEventListener(...)})
+			}
+		};
+
+		$scope.showPhotoPage = function (page) {
+
+			$scope.currentPhotoPage = page;
+
+			var photoIndex = $scope.photoPages[page],
+				photosContainer = document.getElementById('photos-container'),
+				frag = document.createDocumentFragment();
+
+			photosContainer.innerHTML = '';
+
+			for (var rowsUsed = 0; rowsUsed < 3; rowsUsed++) {
+
+				var row = document.createElement('DIV'),
+					colsUsed = 0,
+					colValue;
+
+				row.className = "row";
+
+				while (colsUsed < 12) {
+
+					var imageContainer = document.createElement("DIV");
+
+					if (photoIndex >= $scope.preloadImg.length) {
+						$scope.onHighestPage = true;
+					}
+
+					//portrait
+					if ($scope.preloadImg[photoIndex].origHeight > $scope.preloadImg[photoIndex].origWidth) {
+						imageContainer.className = 'col-xs-3 photo-holder';
+						colValue = 3;
+					//landscape
+					} else {
+						imageContainer.className = 'col-xs-6 photo-holder';
+						colValue = 6;
+					}
+
+					if (colsUsed+colValue > 12) {
+						$scope.preloadImg.push($scope.preloadImg[photoIndex]);
+						$scope.preloadImg.splice(photoIndex,1);
+					} else {
+
+						$scope.preloadImg[photoIndex].setAttribute('data-index',photoIndex);
+						$scope.preloadImg[photoIndex].addEventListener('click',$scope.showPreview);
+
+						imageContainer.appendChild($scope.preloadImg[photoIndex]);
+						row.appendChild(imageContainer);
+
+						colsUsed += colValue;
+						photoIndex++;
+					}
+				}
+
+				frag.appendChild(row);
+				photosContainer.appendChild(frag);
+			}
+
+			$scope.onHighestPage = (photoIndex >= $scope.preloadImg.length);
+
+			if (typeof $scope.photoPages[$scope.currentPhotoPage+1] === 'undefined') {
+				$scope.photoPages[$scope.currentPhotoPage+1] = photoIndex;
+			}
+		};
+		$scope.prevPage = function () {
+			if ($scope.currentPhotoPage > 0) {
+				$scope.currentPhotoPage--;
+				$scope.showPhotoPage($scope.currentPhotoPage);
+			}
+		};
+
+		$scope.nextPage = function () {
+			if (!$scope.onHighestPage) {
+				$scope.currentPhotoPage++;
+				$scope.showPhotoPage($scope.currentPhotoPage);
 			}
 		};
 	}

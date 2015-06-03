@@ -4,12 +4,19 @@
             <div class="page-header">
                 <h1>Photos</h1>
             </div>
-            <div class="row">
-                <div ng-repeat="photo in photos" class="col-md-3 photo-holder">
-                    <img ng-src="{{photo.filepath}}" class="preview-img">
+            
+		<div class="row">
+                        <div class="col-xs-6 text-left">
+                                <span class="no-select page-arrow" ng-click="prevPage()" ng-show="currentPhotoPage > 0"><i class="glyphicon glyphicon-chevron-left no-select page-arrow"></i>Previous</span>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                                <span class="no-select page-arrow" ng-click="nextPage()" ng-show="!onHighestPage">Next<i class="glyphicon glyphicon-chevron-right"></i></span>
+                        </div>
                 </div>
-            </div>
-            <div class="alert alert-warning text-center" data-ng-hide="!photos.$resolved || photos.length">
+                <div id="photos-container">
+                </div>
+
+	    <div class="alert alert-warning text-center" data-ng-hide="!photos.$resolved || photos.length">
                 No Photos yet, why don't you <a href="/#!/admin/photos/create">add a few</a>?
             </div>
         </div>
