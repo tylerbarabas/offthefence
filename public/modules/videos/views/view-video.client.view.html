@@ -1,6 +1,6 @@
 <section data-ng-controller="VideosController" data-ng-init="findOne()">
 	<div class="page-header">
-		<iframe class="band-video" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+		<iframe class="band-video" ng-src="{{video.iFrameUrl}}" frameborder="0" allowfullscreen resize-video></iframe>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == video.user._id))">
 		<a class="btn btn-primary" href="/#!/admin/videos/{{video._id}}/edit">

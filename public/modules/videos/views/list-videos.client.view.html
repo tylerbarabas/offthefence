@@ -3,14 +3,14 @@
         <h1>Videos</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="video in videos" data-ng-href="#!/admin/videos/{{video._id}}" class="list-group-item">
+        <a data-ng-repeat="video in videos" data-ng-href="#!/admin/videos/{{video._id}}" class="list-group-item video-container" resize-video>
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="video.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="video.user.displayName"></span>
 			</small>
-            <iframe class="band-video" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+            <iframe class="band-video" ng-src="{{video.iFrameUrl}}" frameborder="0" allowfullscreen></iframe>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!videos.$resolved || videos.length">

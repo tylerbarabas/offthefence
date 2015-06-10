@@ -215,6 +215,9 @@ body {
 	bottom: 0;
 	color: white;
 }
+.video-container{
+	text-align: center;
+}
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
 	.photo-holder {
 		height: 290px;

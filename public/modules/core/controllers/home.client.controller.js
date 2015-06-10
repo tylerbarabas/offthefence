@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$rootScope','$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows', 'Photos',
-	function($rootScope,$location,$window,$scope, $timeout, Authentication, EmailLists, Shows, Photos) {
+angular.module('core').controller('HomeController', ['$rootScope','$location','$window','$scope', '$timeout', 'Authentication','EmailLists','Shows', 'Photos', 'Videos', '$sce',
+	function($rootScope,$location,$window,$scope, $timeout, Authentication, EmailLists, Shows, Photos, Videos, $sce) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
@@ -87,6 +87,17 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 				$scope.showPhotoPage(0);
 
 			});
+		};
+
+		$scope.findVideos = function () {
+
+			$scope.videos = Videos.query();
+			$scope.videos.$promise.then(function(videos){
+				for (var i=0;i<$scope.videos.length;i++) {
+					$scope.videos[i].iFrameUrl = $sce.trustAsResourceUrl($scope.videos[i].url);
+				}
+			});
+
 		};
 
 		$scope.showPhotoPage = function (page) {

@@ -1,10 +1,12 @@
-<section data-ng-controller="HomeController" ng-init="resizeVideos()">
+<section data-ng-controller="HomeController" ng-init="findVideos();">
 	<div class="jumbotron text-center" id="video-jumbotron">
 		<h1>Videos</h1>
 
-
-		<iframe class="band-video" src="https://www.youtube.com/embed/xZ3kHa0qw4s" frameborder="0" allowfullscreen></iframe>
-		<iframe class="band-video" src="https://www.youtube.com/embed/l3X8acIbrtg" frameborder="0" allowfullscreen></iframe>
+		<div class="row" ng-repeat="video in videos" resize-video>
+			<div class="col-xs-12">
+				<iframe class="band-video" ng-src="{{video.iFrameUrl}}" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
 
 	</div>
 </section>

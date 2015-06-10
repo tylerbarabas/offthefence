@@ -1,8 +1,8 @@
 'use strict';
 
 // Videos controller
-angular.module('videos').controller('VideosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Videos',
-	function($scope, $stateParams, $location, Authentication, Videos) {
+angular.module('videos').controller('VideosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Videos', '$sce',
+	function($scope, $stateParams, $location, Authentication, Videos, $sce) {
 		$scope.authentication = Authentication;
 
 		// Create new Video
@@ -54,12 +54,20 @@ angular.module('videos').controller('VideosController', ['$scope', '$stateParams
 		// Find a list of Videos
 		$scope.find = function() {
 			$scope.videos = Videos.query();
+			$scope.videos.$promise.then(function(videos){
+				for (var i=0;i<$scope.videos.length;i++) {
+					$scope.videos[i].iFrameUrl = $sce.trustAsResourceUrl($scope.videos[i].url);
+				}
+			});
 		};
 
 		// Find existing Video
 		$scope.findOne = function() {
 			$scope.video = Videos.get({ 
 				videoId: $stateParams.videoId
+			});
+			$scope.video.$promise.then(function(video) {
+				$scope.video.iFrameUrl = $sce.trustAsResourceUrl($scope.video.url);
 			});
 		};
 	}
