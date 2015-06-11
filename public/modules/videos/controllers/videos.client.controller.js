@@ -7,6 +7,9 @@ angular.module('videos').controller('VideosController', ['$scope', '$stateParams
 
 		// Create new Video
 		$scope.create = function() {
+
+			this.url = this.url.replace("watch?v=", "embed/");
+
 			// Create new Video object
 			var video = new Videos ({
 				url: this.url
@@ -43,6 +46,8 @@ angular.module('videos').controller('VideosController', ['$scope', '$stateParams
 		// Update existing Video
 		$scope.update = function() {
 			var video = $scope.video;
+
+			video.url = video.url.replace("watch?v=", "embed/");
 
 			video.$update(function() {
 				$location.path('admin/videos/' + video._id);
