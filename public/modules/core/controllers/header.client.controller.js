@@ -14,7 +14,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		
 		sndList.push({src:'modules/core/snd/howlatthemoon.mp3',id:'Howl at the Moon'});
 		sndList.push({src:'modules/core/snd/beer.mp3',id:'Beer'});
-		sndList.push({src:'modules/core/snd/longlongtime.mp3',id:'Long Long Time'});
+		sndList.push({src:'modules/core/snd/longlongtime.mp3',id:'A Long, Long Time'});
 		sndList.push({src:'modules/core/snd/hypnotized.mp3',id:'Hypnotized'});
 
 		$('#sound-loading').show();
