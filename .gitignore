@@ -8,4 +8,3 @@ app/tests/coverage/
 .bower-*/
 .idea/
 public/modules/photos/img/
-public/modules/core/downloads/
