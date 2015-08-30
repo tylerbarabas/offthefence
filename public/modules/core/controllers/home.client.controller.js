@@ -64,6 +64,7 @@ angular.module('core').controller('HomeController', ['$rootScope','$location','$
 		// Find a list of Shows
 		$scope.findShows = function() {
 			$scope.shows = Shows.query();
+			console.log($scope.shows);
 		};
 
 		//Find a list of photos

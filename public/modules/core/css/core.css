@@ -354,3 +354,15 @@ body {
 		font-size: 12px;
 	}
 }
+.jacks-shack {
+	margin-top: -25px;
+	margin-bottom: -11px;
+}
+#jacks-shack-cover {
+	margin-top: 5%;
+	width: 100%;
+	border-radius: 15px;
+}
+.big-letter {
+	font-size: 30px;
+}
