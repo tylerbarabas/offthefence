@@ -76,6 +76,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			if (!sndPlaying) {
 				$scope.sndInstance = createjs.Sound.play(sndList[sndIndex].src);
 				$scope.sndInstance.volume = 1;
+				$scope.sndInstance.pan = .5;
 				sndPlaying = true;
 				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished));
 			}
