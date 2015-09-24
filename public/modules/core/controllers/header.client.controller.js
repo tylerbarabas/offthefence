@@ -78,19 +78,26 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 				$scope.sndInstance.volume = 1;
 				$scope.sndInstance.pan = .5;
 				sndPlaying = true;
-				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished));
+				$scope.sndInstance.on("complete", createjs.proxy($scope.sndFinished,$scope,true));
 			}
-                };
+		};
 
-		$scope.sndFinished = function() {
-			$('#sound-title').hide();
-			sndPlaying = false;
-			$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
+		$scope.sndFinished = function(nextSong) {
+
+			nextSong = nextSong || false;
+
+			if (nextSong) {
+				$scope.changeSong('next');
+			} else {
+				$('#sound-title').hide();
+				sndPlaying = false;
+				$('#play').removeClass('glyphicon-pause').addClass('glyphicon-play');
+			}
 		};
 
                 $scope.stopMusic = function() {
-                        createjs.Sound.stop("sound");
-			$scope.sndFinished();
+					createjs.Sound.stop("sound");
+					$scope.sndFinished(false);
                 };
 
 		$scope.changeSong = function(index){
