@@ -152,7 +152,7 @@ body {
 	color: #99CCFF;
 }
 .band-photo {
-	margin-top: 8%;
+	margin-top: 14%;
 	width: 100%;
 	border-radius: 15px;
 }
@@ -359,8 +359,8 @@ body {
 	margin-bottom: -11px;
 }
 #jacks-shack-cover {
-	margin-top: 5%;
-	width: 100%;
+	margin: 5% auto;
+	width: 80%;
 	border-radius: 15px;
 }
 .big-letter {
